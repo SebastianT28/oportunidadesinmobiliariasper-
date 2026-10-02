@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Bloquear directorios de recursos que no deben indexarse
+Disallow: /css/
+Disallow: /js/
+Disallow: /img/
+
+# Sitemap
+Sitemap: https://oportunidadesinmobiliariasperu.com/sitemap.xml

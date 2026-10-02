@@ -1,0 +1,28 @@
+Options +FollowSymLinks
+Options -Indexes
+
+RewriteBase /
+# HTTPS SEGURO
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# SIN WWW
+RewriteCond %{HTTP_HOST} ^www.oportunidadesinmobiliariasperu.com [NC]
+RewriteRule ^(.*)$ https://oportunidadesinmobiliariasperu.com/$1 [L,R=301]
+
+#SIN SLASH AL FINAL
+#RewriteRule ^(.*)/$ $1 [L,R=301]
+
+RewriteEngine on
+RewriteCond %{SCRIPT_FILENAME} !-d  
+RewriteCond %{SCRIPT_FILENAME} !-f
+Rewriterule ^/ index.php
+Rewriterule ^proyecto proyecto.php
+Rewriterule ^alquiler alquiler.php
+Rewriterule ^novedades/(.+)?$ blog.php?p=$1 [L]
+Rewriterule ^novedades blog.php
+Rewriterule ^articulo/(.+)?$ article.php?id=$1
+Rewriterule ^error error.php
+Rewriterule ^sitemap sitemap.xml
+
+ErrorDocument 404 /error.php

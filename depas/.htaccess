@@ -1,0 +1,20 @@
+Options +FollowSymLinks
+Options -Indexes
+
+RewriteBase /meritum/
+# HTTPS SEGURO
+#RewriteCond %{HTTPS} off
+#RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# SIN WWW
+#RewriteCond %{HTTP_HOST} ^www.agdomus.com [NC]
+#RewriteRule ^(.*)$ https://agdomus.com/$1 [L,R=301]
+
+#SIN SLASH AL FINAL
+RewriteRule ^(.*)/$ $1 [L,R=301]
+
+RewriteEngine on
+RewriteCond %{SCRIPT_FILENAME} !-d  
+RewriteCond %{SCRIPT_FILENAME} !-f
+Rewriterule ^/ index.php
+Rewriterule ^sitemap sitemap.xml

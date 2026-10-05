@@ -2,9 +2,9 @@ Options +FollowSymLinks
 Options -Indexes
 
 RewriteBase /
-# HTTPS SEGURO
-RewriteCond %{HTTPS} off
-RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# HTTPS SEGURO — deshabilitado en local/Docker (solo produccion)
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 # SIN WWW
 RewriteCond %{HTTP_HOST} ^www.oportunidadesinmobiliariasperu.com [NC]

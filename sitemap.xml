@@ -1,52 +1,258 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-    <!-- Página principal -->
+    <!-- Página Principal -->
     <url>
         <loc>https://oportunidadesinmobiliariasperu.com/</loc>
-        <lastmod>2026-10-01</lastmod>
-        <changefreq>weekly</changefreq>
+        <lastmod>2026-10-05</lastmod>
+        <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
 
-    <!-- Proyectos -->
+    <!-- Nosotros -->
     <url>
-        <loc>https://oportunidadesinmobiliariasperu.com/proyecto</loc>
-        <lastmod>2026-10-01</lastmod>
+        <loc>https://oportunidadesinmobiliariasperu.com/nosotros</loc>
+        <lastmod>2026-10-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Catálogo Terrenos -->
+    <url>
+        <loc>https://oportunidadesinmobiliariasperu.com/terrenos</loc>
+        <lastmod>2026-10-05</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
+    <url>
+        <loc>https://oportunidadesinmobiliariasperu.com/terrenos/villa-victoria</loc>
+        <lastmod>2026-10-05</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.85</priority>
+    </url>
+    <url>
+        <loc>https://oportunidadesinmobiliariasperu.com/terrenos/valle-sol</loc>
+        <lastmod>2026-10-05</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.85</priority>
+    </url>
+    <url>
+        <loc>https://oportunidadesinmobiliariasperu.com/terrenos/portales-la-joya</loc>
+        <lastmod>2026-10-05</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.85</priority>
+    </url>
 
-    <!-- Alquiler -->
+    <!-- Catálogo Casas -->
+    <url>
+        <loc>https://oportunidadesinmobiliariasperu.com/casas</loc>
+        <lastmod>2026-10-05</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://oportunidadesinmobiliariasperu.com/casas/las-lomas</loc>
+        <lastmod>2026-10-05</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.85</priority>
+    </url>
+    <url>
+        <loc>https://oportunidadesinmobiliariasperu.com/casas/el-olivar</loc>
+        <lastmod>2026-10-05</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.85</priority>
+    </url>
+    <url>
+        <loc>https://oportunidadesinmobiliariasperu.com/casas/casonas-blancas</loc>
+        <lastmod>2026-10-05</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.85</priority>
+    </url>
+
+    <!-- Catálogo Departamentos -->
+    <url>
+        <loc>https://oportunidadesinmobiliariasperu.com/departamentos</loc>
+        <lastmod>2026-10-05</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://oportunidadesinmobiliariasperu.com/departamentos/residencias-norte</loc>
+        <lastmod>2026-10-05</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.85</priority>
+    </url>
+    <url>
+        <loc>https://oportunidadesinmobiliariasperu.com/departamentos/torres-del-sol</loc>
+        <lastmod>2026-10-05</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.85</priority>
+    </url>
+    <url>
+        <loc>https://oportunidadesinmobiliariasperu.com/departamentos/proyecto-1</loc>
+        <lastmod>2026-10-05</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://oportunidadesinmobiliariasperu.com/departamentos/proyecto-2</loc>
+        <lastmod>2026-10-05</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://oportunidadesinmobiliariasperu.com/departamentos/proyecto-3</loc>
+        <lastmod>2026-10-05</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://oportunidadesinmobiliariasperu.com/departamentos/condominio-verde</loc>
+        <lastmod>2026-10-05</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.85</priority>
+    </url>
+
+    <!-- Novedades / Blog -->
+    <url>
+        <loc>https://oportunidadesinmobiliariasperu.com/novedades</loc>
+        <lastmod>2026-10-05</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://oportunidadesinmobiliariasperu.com/novedades/protege-tu-hogar-lluvias</loc>
+        <lastmod>2026-10-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://oportunidadesinmobiliariasperu.com/novedades/mejores-zonas-aire-puro-arequipa</loc>
+        <lastmod>2026-10-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://oportunidadesinmobiliariasperu.com/novedades/donde-comprar-futuro-hogar</loc>
+        <lastmod>2026-10-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://oportunidadesinmobiliariasperu.com/novedades/invertir-bienes-raices-2026</loc>
+        <lastmod>2026-10-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://oportunidadesinmobiliariasperu.com/novedades/habilitacion-urbana-titulo-propiedad</loc>
+        <lastmod>2026-10-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Catálogo Alquileres -->
     <url>
         <loc>https://oportunidadesinmobiliariasperu.com/alquiler</loc>
-        <lastmod>2026-10-01</lastmod>
+        <lastmod>2026-10-08</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://oportunidadesinmobiliariasperu.com/alquiler/local-yanahuara</loc>
+        <lastmod>2026-10-08</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.85</priority>
+    </url>
+    <url>
+        <loc>https://oportunidadesinmobiliariasperu.com/alquiler/depa-cayma</loc>
+        <lastmod>2026-10-08</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.85</priority>
+    </url>
+    <url>
+        <loc>https://oportunidadesinmobiliariasperu.com/alquiler/casa-cerro-colorado</loc>
+        <lastmod>2026-10-08</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.85</priority>
+    </url>
+
+    <!-- Catálogo Airbnb -->
+    <url>
+        <loc>https://oportunidadesinmobiliariasperu.com/airbnb</loc>
+        <lastmod>2026-10-07</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://oportunidadesinmobiliariasperu.com/airbnb/depa-misti-yanahuara</loc>
+        <lastmod>2026-10-07</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.85</priority>
+    </url>
+    <url>
+        <loc>https://oportunidadesinmobiliariasperu.com/airbnb/suite-boutique-miraflores</loc>
+        <lastmod>2026-10-07</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.85</priority>
+    </url>
+    <url>
+        <loc>https://oportunidadesinmobiliariasperu.com/airbnb/casa-familiar-cayma</loc>
+        <lastmod>2026-10-07</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.85</priority>
+    </url>
+    <url>
+        <loc>https://oportunidadesinmobiliariasperu.com/airbnb/loft-centro-historico</loc>
+        <lastmod>2026-10-07</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.85</priority>
+    </url>
+    <url>
+        <loc>https://oportunidadesinmobiliariasperu.com/airbnb/villa-campina-sachaca</loc>
+        <lastmod>2026-10-07</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.85</priority>
+    </url>
+    <url>
+        <loc>https://oportunidadesinmobiliariasperu.com/airbnb/habitacion-panoramica-mariano-melgar</loc>
+        <lastmod>2026-10-07</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://oportunidadesinmobiliariasperu.com/airbnb/casa-sol-la-joya</loc>
+        <lastmod>2026-10-07</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.85</priority>
+    </url>
+    <url>
+        <loc>https://oportunidadesinmobiliariasperu.com/airbnb/depa-confort-cerro-colorado</loc>
+        <lastmod>2026-10-07</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
 
-    <!-- Blog / Novedades -->
+    <!-- Contacto & Asesoría -->
     <url>
-        <loc>https://oportunidadesinmobiliariasperu.com/novedades</loc>
-        <lastmod>2026-10-01</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.7</priority>
+        <loc>https://oportunidadesinmobiliariasperu.com/contacto</loc>
+        <lastmod>2026-10-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.85</priority>
     </url>
 
-    <!-- Landing: Valle Sol -->
+    <!-- Legales -->
     <url>
-        <loc>https://oportunidadesinmobiliariasperu.com/l1/</loc>
-        <lastmod>2026-10-01</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
+        <loc>https://oportunidadesinmobiliariasperu.com/politica-de-privacidad</loc>
+        <lastmod>2026-10-08</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
     </url>
-
-    <!-- Landing: Departamentos -->
     <url>
-        <loc>https://oportunidadesinmobiliariasperu.com/depas/</loc>
-        <lastmod>2026-10-01</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
+        <loc>https://oportunidadesinmobiliariasperu.com/terminos-y-condiciones</loc>
+        <lastmod>2026-10-08</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
     </url>
 
 </urlset>

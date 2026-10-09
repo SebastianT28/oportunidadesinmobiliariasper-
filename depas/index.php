@@ -18,8 +18,8 @@ $page = "Inicio";
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Departamentos en Arequipa | Oportunidades Inmobiliarias Perú</title>
 
-    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
-    <link rel="icon" type="image/png" href="img/favicon.png">
+    <link rel="shortcut icon" href="img/favicon.webp" type="image/x-icon">
+    <link rel="icon" type="image/png" href="img/favicon.webp">
 
     <meta name="description" content="Departamentos en construcción y entregados en Arequipa. Encuentra el departamento ideal para tu familia con las mejores ubicaciones y financiamiento. Oportunidades Inmobiliarias Perú.">
     <meta name="keywords" content="departamentos arequipa, departamentos en venta arequipa, venta departamentos, departamentos nuevos arequipa">
@@ -32,7 +32,7 @@ $page = "Inicio";
     <meta property="og:type" content="website">
     <meta property="og:locale" content="es_PE">
     <meta property="og:description" content="Departamentos en construcción y entregados en Arequipa. La mejor oportunidad para tu familia.">
-    <meta property="og:image" content="https://oportunidadesinmobiliariasperu.com/depas/img/fb_banner.jpg">
+    <meta property="og:image" content="https://oportunidadesinmobiliariasperu.com/depas/img/fb_banner.webp">
 
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#879128">
@@ -44,8 +44,9 @@ $page = "Inicio";
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css'>
 
-    <link rel="stylesheet" type="text/css" href="css/styles2k2k2.css?v.0.2.2">
-    <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
+    <base href="/">
+    <link rel="stylesheet" type="text/css" href="/css/styles2k2k2.css?v.0.2.2">
+    <link rel="stylesheet" type="text/css" href="/css/sweetalert.css">
 
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -364,7 +365,7 @@ $page = "Inicio";
                 <span>lotes vendidos</span>
               </li>
             </ul>
-            <a href="https://api.whatsapp.com/send?phone=51900113128&text=¡Hola! me interesa una visita para conocer Villa Victoria" title="¡Obtén tu visita guiada!" target="_blank" class="button primary">Conversar con un asesor <i class="ri-arrow-right-line"></i></a>
+            <a href="https://api.whatsapp.com/send?phone=51999653412&text=¡Hola! me interesa una visita para conocer Villa Victoria" title="¡Obtén tu visita guiada!" target="_blank" class="button primary">Conversar con un asesor <i class="ri-arrow-right-line"></i></a>
         </div>
         <div class="projects-home__img">
 
@@ -415,7 +416,7 @@ $page = "Inicio";
       </a>
     </div>
     <div class="visitas xl-container">
-        <img src="img/mapa.png" alt="Ubicación Villa Victoria" class="plano">
+        <img src="img/mapa.webp" alt="Ubicación Villa Victoria" class="plano">
     </div>
     <div class="ubicacion-title m-container-center">
         <h2>Ubicación</h2>
@@ -458,7 +459,7 @@ $page = "Inicio";
     <div class="cotizar l-container">
         <div class="cotizar-plano">
             <div class="img1" id="box1">
-                <img src="img/depa1.png" alt="">
+                <img src="img/depa1.webp" alt="">
                 <div class="columns-center3 bg-cotizar about-img__columns">
                     <div class="third_column center">
                         <h2>20</h2>
@@ -475,7 +476,7 @@ $page = "Inicio";
                 </div>
             </div>
             <div class="img1" id="box2">
-                <img src="img/depa2.png" alt="">
+                <img src="img/depa2.webp" alt="">
                 <div class="columns-center3 bg-cotizar about-img__columns">
                     <div class="third_column center">
                         <h2>20</h2>
@@ -492,7 +493,7 @@ $page = "Inicio";
                 </div>
             </div>
             <div class="img1" id="box3">
-                <img src="img/depa3.png" alt="">
+                <img src="img/depa3.webp" alt="">
                 <div class="columns-center3 bg-cotizar about-img__columns">
                     <div class="third_column center">
                         <h2>20</h2>
@@ -570,7 +571,7 @@ $page = "Inicio";
         <h3 class="main_subtitle-center white">Conocemos el valor que tiene tu familia</h3>
         <h2 class="main_title white">Obtén ahora el terreno de tus sueños para el futuro de tus hijos</h2>
         <div class="pd1"></div>
-        <a href="https://api.whatsapp.com/send?phone=51900113128&text=¡Hola! me interesa una visita para conocer Villa Victoria" title="¡Obtén tu visita guiada!" target="_blank" class="button primary">Conversar con un asesor <i class="flaticon-whatsapp"></i></a>
+        <a href="https://api.whatsapp.com/send?phone=51999653412&text=¡Hola! me interesa una visita para conocer Villa Victoria" title="¡Obtén tu visita guiada!" target="_blank" class="button primary">Conversar con un asesor <i class="flaticon-whatsapp"></i></a>
     </div>
     <div class="pd5"></div>
 </section>

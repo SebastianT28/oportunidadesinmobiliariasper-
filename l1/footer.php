@@ -29,11 +29,11 @@
                 </div>
                 <div class="icon-footer">
                     <i class="flaticon-phone-call"></i>
-                    <p>900 113 128</p>
+                    <p>999 653 412</p>
                 </div>
                 <div class="icon-footer">
                     <i class="flaticon-whatsapp"></i>
-                    <p>900 113 128</p>
+                    <p>999 653 412</p>
                 </div>
             </div>
             </div>

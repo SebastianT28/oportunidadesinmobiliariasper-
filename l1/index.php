@@ -18,8 +18,8 @@ $page = "Inicio";
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Valle Sol — Terrenos en La Joya, Arequipa | Oportunidades Inmobiliarias Perú</title>
 
-    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
-    <link rel="icon" type="image/png" href="img/favicon.png">
+    <link rel="shortcut icon" href="img/favicon.webp" type="image/x-icon">
+    <link rel="icon" type="image/png" href="img/favicon.webp">
 
     <meta name="description" content="Valle Sol, proyecto residencial ubicado en San Isidro, La Joya, a solo 1 hora de Arequipa. Terrenos desde S/ 8,900. Vive rodeado de naturaleza y comodidad. ¡Reserva hoy!">
     <meta name="keywords" content="terrenos, arequipa, la joya, venta de lotes, lotes arequipa, terrenos la joya">
@@ -32,7 +32,7 @@ $page = "Inicio";
     <meta property="og:type" content="website">
     <meta property="og:locale" content="es_PE">
     <meta property="og:description" content="Valle Sol, proyecto residencial en La Joya, Arequipa. Terrenos desde S/ 8,900. Naturaleza y comodidad a 1 hora de la ciudad.">
-    <meta property="og:image" content="https://oportunidadesinmobiliariasperu.com/l1/img/fb_banner.jpg">
+    <meta property="og:image" content="https://oportunidadesinmobiliariasperu.com/l1/img/fb_banner.webp">
 
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#879128">
@@ -44,8 +44,9 @@ $page = "Inicio";
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css'>
 
-    <link rel="stylesheet" type="text/css" href="css/styles2k2k2.css?v.0.2.2">
-    <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
+    <base href="/">
+    <link rel="stylesheet" type="text/css" href="/css/styles2k2k2.css?v.0.2.2">
+    <link rel="stylesheet" type="text/css" href="/css/sweetalert.css">
 
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -68,14 +69,14 @@ $page = "Inicio";
 
                     <div class="contact-widget">
                         <!--Icono-->
-                        <a href="tel:912079015" target="_blank">
+                        <a href="tel:999653412" target="_blank">
                             <div class="contact-widget__icon flaticon-phone-call icon-header"></div>
                         </a>
 
                         <!--Datos-->
                         <div class="contact-widget__data no-widget">
                           <h3 class="contact-widget__title white">Llámanos</h3>
-                          <p class="contact-widget__content white">900 113 128</p>
+                          <p class="contact-widget__content white">999 653 412</p>
                         </div>
                     </div>
 
@@ -95,7 +96,7 @@ $page = "Inicio";
                 <div class="top-bar__right">
 
                     <div class="widget-top">
-                        <a href="https://api.whatsapp.com/send?phone=51900113128&text=¡Hola! me interesa una visita para conocer Villa Victoria" title="¡Obtén tu visita guiada!" target="_blank">
+                        <a href="https://api.whatsapp.com/send?phone=51999653412&text=¡Hola! me interesa una visita para conocer Villa Victoria" title="¡Obtén tu visita guiada!" target="_blank">
                             <i class="ri-whatsapp-line"></i> <span class="no-mobile">Conversemos</span>
                         </a>
                     </div>
@@ -217,7 +218,7 @@ $page = "Inicio";
                 <span>Zonas de descanso</span>
               </li>
             </ul>
-            <a href="https://api.whatsapp.com/send?phone=51900113128&text=¡Hola! me interesa una visita para conocer Villa Victoria" title="¡Obtén tu visita guiada!" target="_blank" class="button primary">Solicitar visita <i class="ri-arrow-right-line"></i></a>
+            <a href="https://api.whatsapp.com/send?phone=51999653412&text=¡Hola! me interesa una visita para conocer Villa Victoria" title="¡Obtén tu visita guiada!" target="_blank" class="button primary">Solicitar visita <i class="ri-arrow-right-line"></i></a>
         </div>
         <div class="about-img">
 
@@ -403,7 +404,7 @@ $page = "Inicio";
                 <span>lotes vendidos</span>
               </li>
             </ul>
-            <a href="https://api.whatsapp.com/send?phone=51900113128&text=¡Hola! me interesa una visita para conocer Villa Victoria" title="¡Obtén tu visita guiada!" target="_blank" class="button primary">Conversar con un asesor <i class="ri-arrow-right-line"></i></a>
+            <a href="https://api.whatsapp.com/send?phone=51999653412&text=¡Hola! me interesa una visita para conocer Villa Victoria" title="¡Obtén tu visita guiada!" target="_blank" class="button primary">Conversar con un asesor <i class="ri-arrow-right-line"></i></a>
         </div>
         <div class="projects-home__img">
 
@@ -539,7 +540,7 @@ $page = "Inicio";
         <h3 class="main_subtitle-center white">Conocemos el valor que tiene tu familia</h3>
         <h2 class="main_title white">Obtén ahora el terreno de tus sueños para el futuro de tus hijos</h2>
         <div class="pd1"></div>
-        <a href="https://api.whatsapp.com/send?phone=51900113128&text=¡Hola! me interesa una visita para conocer Villa Victoria" title="¡Obtén tu visita guiada!" target="_blank" class="button primary">Conversar con un asesor <i class="flaticon-whatsapp"></i></a>
+        <a href="https://api.whatsapp.com/send?phone=51999653412&text=¡Hola! me interesa una visita para conocer Villa Victoria" title="¡Obtén tu visita guiada!" target="_blank" class="button primary">Conversar con un asesor <i class="flaticon-whatsapp"></i></a>
     </div>
     <div class="pd5"></div>
 </section>

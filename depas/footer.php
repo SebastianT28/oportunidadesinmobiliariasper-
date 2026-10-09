@@ -2,7 +2,7 @@
     <div class="pd2"></div>
     <div class="footer l-container">
         <div class="footer-column br-footer">
-            <img src="img/logo.png" alt="" width="250px">
+            <img src="img/logo.webp" alt="" width="250px">
             <div class="divider-footer"></div>
             <p>Si estás buscando vender tu proyecto inmobiliario, has llegado al lugar correcto, en DOMUS Agencia Inmobiliaria podemos ayudarte a tener éxito en tus ventas inmobiliarias.</p>
             <!-- <div class="social-footer">
@@ -29,11 +29,11 @@
                 </div>
                 <div class="icon-footer">
                     <i class="flaticon-phone-call"></i>
-                    <p>900 113 128</p>
+                    <p>999 653 412</p>
                 </div>
                 <div class="icon-footer">
                     <i class="flaticon-whatsapp"></i>
-                    <p>900 113 128</p>
+                    <p>999 653 412</p>
                 </div>
             </div>
             </div>

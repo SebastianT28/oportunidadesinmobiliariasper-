@@ -8432,7 +8432,43 @@ POPUP
 /* ══════════════════════════════════════════════════════════
    DETALLE DE PROPIEDAD
 ══════════════════════════════════════════════════════════ */
-.detail-breadcrumb { padding: .8rem 0; }
+.detail-breadcrumb {
+  background: var(--main-color, #0a1b3d);
+  padding: .85rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.detail-breadcrumb.bg-accent {
+  background: var(--main-color, #0a1b3d) !important;
+}
+.detail-breadcrumb .breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .45rem;
+  font-size: .88rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+.detail-breadcrumb .breadcrumb a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 400;
+  transition: color .2s ease;
+}
+.detail-breadcrumb .breadcrumb a:hover {
+  color: var(--accent-color, #97defa);
+  text-decoration: underline;
+}
+.detail-breadcrumb .breadcrumb i {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: .85rem;
+  display: inline-flex;
+  align-items: center;
+}
+.detail-breadcrumb .breadcrumb span {
+  color: var(--accent-color, #97defa);
+  font-weight: 600;
+}
+
 .breadcrumb { display:flex; align-items:center; gap:.4rem; font-size:.85rem; color:#666; }
 .breadcrumb a { color:var(--main2-color); text-decoration:none; }
 .breadcrumb a:hover { text-decoration:underline; }

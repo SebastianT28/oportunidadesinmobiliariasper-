@@ -20,7 +20,7 @@ $base = '../';
 include_once '../header.php';
 ?>
 
-<div class="detail-breadcrumb bg-accent">
+<div class="detail-breadcrumb">
     <div class="l-container">
         <nav class="breadcrumb">
             <a href="/">Inicio</a> <i class="ri-arrow-right-s-line"></i>

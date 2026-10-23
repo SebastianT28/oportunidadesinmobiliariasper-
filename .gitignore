@@ -11,3 +11,9 @@ Thumbs.db
 # IDE
 .vscode/
 .idea/
+
+# AI Agent customizations (manejados en la raíz del proyecto)
+.agents/
+
+# Backups locales de imágenes de alta resolución
+img/tour360/original_backup/

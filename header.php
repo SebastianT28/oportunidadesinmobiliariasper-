@@ -139,13 +139,14 @@
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 
     <!-- Fuente principal: preload + font-display swap (evita FOIT) -->
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;600;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;600;800&display=swap"></noscript>
 
     <!-- CSS propio: crítico, carga síncrona con versión para cache busting -->
-    <link rel="stylesheet" type="text/css" href="/css/styles2k2k2.css?v=0.2.3">
+    <link rel="stylesheet" type="text/css" href="/css/styles2k2k2.css?v=0.2.4">
 
     <!-- CSS externos no críticos: carga diferida para no bloquear render -->
     <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" onload="this.onload=null;this.rel='stylesheet'">
@@ -155,6 +156,14 @@
     <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"></noscript>
 
     <link rel="stylesheet" type="text/css" href="/css/sweetalert.css">
+
+    <?php if (!empty($prop['has_panorama']) || !empty($prop['tour_virtual']['activo'])): ?>
+    <!-- Pannellum 360° viewer CSS: carga diferida no bloqueante para FCP óptimo -->
+    <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css"></noscript>
+    <!-- Estilos personalizados del visor 360° -->
+    <link rel="stylesheet" type="text/css" href="/css/360.css?v=1.3.1">
+    <?php endif; ?>
 
     <!-- Preload logo (imagen crítica LCP móvil) -->
     <link rel="preload" as="image" href="/img/logo.webp">

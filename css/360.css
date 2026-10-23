@@ -1,0 +1,797 @@
+/*
+ * 360.css — Estilos del Visor Panorámico 360° y Galería Integrada
+ * Proyecto: Oportunidades Inmobiliarias Perú
+ */
+
+/* ══════════════════════════════════════════════════
+   Visor 360° Integrado en la Galería Principal
+   ══════════════════════════════════════════════════ */
+
+.gallery-main {
+    position: relative;
+    background: #060b14;
+}
+
+.gallery-main.is-360-mode {
+    cursor: default !important;
+}
+
+.gallery-main.is-photo-mode {
+    cursor: zoom-in;
+}
+
+.gallery-main .panorama-viewer {
+    width: 100%;
+    height: 520px;
+    position: relative;
+    background: #060b14;
+    display: block;
+    z-index: 1;
+}
+
+/* Mantener controles de galería por encima del canvas de Pannellum y con posición correcta */
+.gallery-main .gallery-counter {
+    left: 18px !important;
+    right: auto !important;
+    bottom: 14px !important;
+    width: auto !important;
+    z-index: 6;
+}
+
+.gallery-main .gallery-expand {
+    left: auto !important;
+    right: 18px !important;
+    bottom: 14px !important;
+    width: auto !important;
+    z-index: 6;
+}
+
+.gallery-main .gallery-arrow {
+    z-index: 6;
+}
+
+/* Indicador de 360° en el contador de la galería */
+.gallery-counter .ri-compass-3-line {
+    color: #2ecc71;
+    font-size: 15px;
+    vertical-align: middle;
+    margin-right: 4px;
+}
+
+/* ══════════════════════════════════════════════════
+   Miniatura 360° en la tira de thumbnails
+   ══════════════════════════════════════════════════ */
+
+.gallery-thumb--360 {
+    position: relative;
+    border-color: rgba(46, 204, 113, 0.4) !important;
+}
+
+.gallery-thumb--360 .thumb-360-badge {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    background: rgba(10, 27, 61, 0.72);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .05em;
+    backdrop-filter: blur(2px);
+    transition: background 0.2s, color 0.2s;
+    pointer-events: none;
+}
+
+.gallery-thumb--360 .thumb-360-badge i {
+    font-size: 20px;
+    color: #2ecc71;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+}
+
+.gallery-thumb--360:hover .thumb-360-badge,
+.gallery-thumb--360.active .thumb-360-badge {
+    background: rgba(18, 77, 47, 0.82);
+    color: #ffffff;
+}
+
+.gallery-thumb--360.active {
+    border-color: #2ecc71 !important;
+    box-shadow: 0 0 10px rgba(46, 204, 113, 0.4);
+}
+
+/* ══════════════════════════════════════════════════
+   Miniatura "Tour 360" en la tira de thumbnails
+   ══════════════════════════════════════════════════ */
+
+.gallery-thumb--tour {
+    position: relative;
+    border-color: rgba(47, 111, 216, 0.4) !important;
+}
+
+.gallery-thumb--tour .thumb-tour-badge {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    background: rgba(10, 27, 61, 0.76);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .05em;
+    backdrop-filter: blur(2px);
+    transition: background 0.2s, color 0.2s;
+    pointer-events: none;
+}
+
+.gallery-thumb--tour .thumb-tour-badge i {
+    font-size: 20px;
+    color: #4da3ff;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+}
+
+.gallery-thumb--tour:hover .thumb-tour-badge,
+.gallery-thumb--tour.active .thumb-tour-badge {
+    background: rgba(26, 58, 126, 0.85);
+    color: #ffffff;
+}
+
+.gallery-thumb--tour.active {
+    border-color: #4da3ff !important;
+    box-shadow: 0 0 12px rgba(77, 163, 255, 0.5);
+}
+
+/* ══════════════════════════════════════════════════
+   Barra flotante de Escenas del Tour 3D
+   ══════════════════════════════════════════════════ */
+
+.tour-scene-bar {
+    position: absolute;
+    top: 18px;
+    left: 70px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 6;
+    max-width: calc(100% - 90px);
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 2px;
+}
+
+.tour-scene-bar::-webkit-scrollbar { display: none; }
+
+.tour-scene-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(10, 27, 61, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.22);
+}
+
+.tour-scene-chip:hover {
+    background: rgba(26, 58, 126, 0.95);
+    border-color: #4da3ff;
+    transform: translateY(-1px);
+}
+
+.tour-scene-chip.active {
+    background: linear-gradient(135deg, #1e7e4e, #2ecc71);
+    border-color: #2ecc71;
+    color: #ffffff;
+    font-weight: 700;
+    box-shadow: 0 4px 14px rgba(46, 204, 113, 0.45);
+}
+
+.tour-chip-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.22);
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.tour-scene-chip.active .tour-chip-num {
+    background: #ffffff;
+    color: #1e7e4e;
+}
+
+/* ══════════════════════════════════════════════════
+   Barra Desplegable de Ambientes (Móvil / Tablet)
+   ══════════════════════════════════════════════════ */
+
+.tour-scenes-desktop {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tour-scenes-dropdown {
+    display: none;
+    position: relative;
+}
+
+/* Disparador del menú de ambientes */
+.tour-dropdown-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(10, 27, 61, 0.90);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    color: #ffffff;
+    font-size: 12px;
+    font-family: 'Kanit', sans-serif;
+    font-weight: 600;
+    padding: 5px 11px;
+    border-radius: 999px;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.tour-dropdown-trigger:hover,
+.tour-dropdown-trigger.is-open {
+    background: rgba(18, 45, 99, 0.96);
+    border-color: #2ecc71;
+}
+
+.tour-dropdown-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.78);
+    text-transform: uppercase;
+    letter-spacing: .04em;
+}
+
+.tour-dropdown-current {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: linear-gradient(135deg, #1e7e4e, #2ecc71);
+    color: #ffffff;
+    padding: 3px 9px;
+    border-radius: 999px;
+    font-size: 11.5px;
+    font-weight: 700;
+    box-shadow: 0 2px 8px rgba(46, 204, 113, 0.35);
+}
+
+.tour-dropdown-current .tour-chip-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #ffffff;
+    color: #1e7e4e;
+    font-size: 9px;
+    font-weight: 800;
+}
+
+.tour-dropdown-arrow {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.8);
+    transition: transform 0.2s ease;
+}
+
+.tour-dropdown-trigger.is-open .tour-dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+/* Menú desplegable hacia abajo */
+.tour-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    min-width: 195px;
+    background: rgba(10, 27, 61, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 12px;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 6px;
+    display: none;
+    flex-direction: column;
+    gap: 3px;
+    z-index: 25;
+    animation: tourMenuFadeIn 0.18s ease-out;
+}
+
+.tour-dropdown-menu.is-open {
+    display: flex;
+}
+
+@keyframes tourMenuFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.tour-dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    padding: 8px 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-family: 'Kanit', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: left;
+    width: 100%;
+    transition: background 0.15s ease, color 0.15s ease;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.tour-dropdown-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
+.tour-dropdown-item.active {
+    background: rgba(46, 204, 113, 0.18);
+    color: #2ecc71;
+    font-weight: 700;
+}
+
+.tour-dropdown-item .tour-chip-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.18);
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.tour-dropdown-item.active .tour-chip-num {
+    background: #2ecc71;
+    color: #ffffff;
+}
+
+.tour-dropdown-item .tour-item-check {
+    margin-left: auto;
+    font-size: 15px;
+    color: #2ecc71;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+}
+
+.tour-dropdown-item.active .tour-item-check {
+    opacity: 1;
+}
+
+/* ══════════════════════════════════════════════════
+   Hotspots estilo Kuula (puntos interactivos 3D)
+   ══════════════════════════════════════════════════ */
+
+/* Contenedor externo del hotspot — NO escalar en hover para evitar jitter */
+.pnlm-hotspot-base.pnlm-scene {
+    /* Pannellum envuelve el hotspot en este div base */
+    overflow: visible !important;
+}
+
+.pnlm-hotspot.pnlm-scene {
+    width: 44px !important;
+    height: 44px !important;
+    border-radius: 50% !important;
+    background: rgba(30, 126, 78, 0.92) !important;
+    border: 3px solid #ffffff !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45),
+                0 0 0 0 rgba(46, 204, 113, 0.55) !important;
+    cursor: pointer !important;
+    /* Solo transicionar propiedades que NO cambian el tamaño del elemento */
+    transition: background-color 0.2s ease, box-shadow 0.25s ease !important;
+    animation: kuula-pulse 2.2s ease-in-out infinite !important;
+    background-image: none !important;
+    /* Centrar el ícono interno */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: relative !important;
+}
+
+/* Flecha interior — pointer-events:none para no bloquear clicks */
+.pnlm-hotspot.pnlm-scene::after {
+    content: "" !important;
+    pointer-events: none !important;
+    display: block !important;
+    width: 10px !important;
+    height: 10px !important;
+    border-top: 2.5px solid #ffffff !important;
+    border-right: 2.5px solid #ffffff !important;
+    border-bottom: none !important;
+    border-left: none !important;
+    /* Flecha apuntando a la derecha (→) */
+    transform: rotate(45deg) translateX(-2px) !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    margin-top: -5px !important;
+    margin-left: -3px !important;
+}
+
+/* Hover: solo cambios de color/sombra — NUNCA transform:scale */
+.pnlm-hotspot.pnlm-scene:hover {
+    background: #2ecc71 !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45),
+                0 0 0 8px rgba(46, 204, 113, 0.25) !important;
+    animation-play-state: paused !important;
+}
+
+@keyframes kuula-pulse {
+    0%   { box-shadow: 0 4px 16px rgba(0,0,0,0.4), 0 0 0 0   rgba(46, 204, 113, 0.65); }
+    60%  { box-shadow: 0 4px 16px rgba(0,0,0,0.4), 0 0 0 14px rgba(46, 204, 113, 0);   }
+    100% { box-shadow: 0 4px 16px rgba(0,0,0,0.4), 0 0 0 0   rgba(46, 204, 113, 0);   }
+}
+
+
+/* Tooltip elegante Kuula */
+.pnlm-tooltip span {
+    background: rgba(10, 27, 61, 0.92) !important;
+    color: #ffffff !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    padding: 7px 15px !important;
+    border-radius: 8px !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35) !important;
+    backdrop-filter: blur(4px) !important;
+    white-space: nowrap !important;
+    letter-spacing: .02em !important;
+}
+
+.pnlm-tooltip span:after {
+    border-top-color: rgba(10, 27, 61, 0.92) !important;
+}
+
+/* ══════════════════════════════════════════════════
+   Controles nativos Pannellum (+, -, Pantalla Completa)
+   ══════════════════════════════════════════════════ */
+
+.pnlm-title-box { display: none !important; }
+.pnlm-about-msg { display: none !important; }
+
+.pnlm-controls-container {
+    top: 18px !important;
+    left: 18px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+    z-index: 10 !important;
+}
+
+/* Grupo de zoom (+ / -) */
+.pnlm-zoom-controls {
+    width: 38px !important;
+    height: 76px !important;
+    position: relative !important;
+    background: #ffffff !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18) !important;
+    border: 1px solid rgba(0, 0, 0, 0.06) !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+}
+
+.pnlm-zoom-in,
+.pnlm-zoom-out {
+    width: 38px !important;
+    height: 38px !important;
+    position: absolute !important;
+    background-color: #ffffff !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-size: 18px 18px !important;
+    cursor: pointer !important;
+    transition: background-color 0.2s ease, transform 0.15s ease !important;
+}
+
+.pnlm-zoom-in {
+    top: 0 !important;
+    border-radius: 8px 8px 0 0 !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%230a1b3d' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='12' y1='5' x2='12' y2='19'%3E%3C/line%3E%3Cline x1='5' y1='12' x2='19' y2='12'%3E%3C/line%3E%3C/svg%3E") !important;
+}
+
+.pnlm-zoom-in:hover {
+    background-color: #f7fafc !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%231e7e4e' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='12' y1='5' x2='12' y2='19'%3E%3C/line%3E%3Cline x1='5' y1='12' x2='19' y2='12'%3E%3C/line%3E%3C/svg%3E") !important;
+}
+
+.pnlm-zoom-out {
+    bottom: 0 !important;
+    border-top: 1px solid rgba(0, 0, 0, 0.08) !important;
+    border-radius: 0 0 8px 8px !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%230a1b3d' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='5' y1='12' x2='19' y2='12'%3E%3C/line%3E%3C/svg%3E") !important;
+}
+
+.pnlm-zoom-out:hover {
+    background-color: #f7fafc !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%231e7e4e' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='5' y1='12' x2='19' y2='12'%3E%3C/line%3E%3C/svg%3E") !important;
+}
+
+/* Botón Pantalla Completa */
+.pnlm-fullscreen-toggle-button {
+    width: 38px !important;
+    height: 38px !important;
+    background-color: #ffffff !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18) !important;
+    border: 1px solid rgba(0, 0, 0, 0.06) !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-size: 18px 18px !important;
+    cursor: pointer !important;
+    margin: 0 !important;
+    transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease !important;
+}
+
+.pnlm-fullscreen-toggle-button-inactive {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%230a1b3d' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3'%3E%3C/path%3E%3C/svg%3E") !important;
+}
+
+.pnlm-fullscreen-toggle-button-active {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%230a1b3d' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3'%3E%3C/path%3E%3C/svg%3E") !important;
+}
+
+.pnlm-fullscreen-toggle-button:hover {
+    background-color: #f7fafc !important;
+    transform: translateY(-1px) scale(1.04) !important;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22) !important;
+}
+
+.pnlm-fullscreen-toggle-button-inactive:hover {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%231e7e4e' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3'%3E%3C/path%3E%3C/svg%3E") !important;
+}
+
+.pnlm-fullscreen-toggle-button-active:hover {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%231e7e4e' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3'%3E%3C/path%3E%3C/svg%3E") !important;
+}
+
+.pnlm-load-box {
+    background: rgba(6, 11, 20, .94) !important;
+    border: 1px solid rgba(255, 255, 255, .1) !important;
+    border-radius: 12px !important;
+    color: rgba(255, 255, 255, .8) !important;
+}
+
+.pnlm-load-box p { color: rgba(255, 255, 255, .65) !important; }
+
+.pnlm-lbar {
+    background: rgba(46, 204, 113, .2) !important;
+    border: 1px solid rgba(46, 204, 113, .3) !important;
+    border-radius: 999px !important;
+    overflow: hidden;
+}
+
+.pnlm-lbar-fill {
+    background: linear-gradient(90deg, #1e7e4e, #2ecc71) !important;
+}
+
+/* ══════════════════════════════════════════════════
+   Responsive — Controles Pannellum y Escenas 360°
+   ══════════════════════════════════════════════════ */
+
+/* Tablets y pantallas medianas (<= 900px) */
+@media (max-width: 900px) {
+    .gallery-main .panorama-viewer {
+        height: 380px;
+    }
+
+    /* Reducción proporcional y cómoda de controles Pannellum */
+    .pnlm-controls-container {
+        top: 12px !important;
+        left: 12px !important;
+        gap: 6px !important;
+    }
+
+    .pnlm-zoom-controls {
+        width: 32px !important;
+        height: 64px !important;
+        border-radius: 7px !important;
+    }
+
+    .pnlm-zoom-in,
+    .pnlm-zoom-out {
+        width: 32px !important;
+        height: 32px !important;
+        background-size: 15px 15px !important;
+    }
+
+    .pnlm-fullscreen-toggle-button {
+        width: 32px !important;
+        height: 32px !important;
+        background-size: 15px 15px !important;
+        border-radius: 7px !important;
+    }
+}
+
+/* Tablet portrait y Móviles (<= 768px) */
+@media (max-width: 768px) {
+    /* Ocultar barra horizontal de chips en móviles/tablets */
+    .tour-scenes-desktop {
+        display: none !important;
+    }
+
+    /* Mostrar barra desplegable de Ambientes */
+    .tour-scenes-dropdown {
+        display: block !important;
+    }
+
+    .tour-scene-bar {
+        top: 10px;
+        right: 12px;
+        left: auto;
+        max-width: calc(100% - 65px);
+        overflow: visible;
+        padding: 0;
+    }
+}
+
+/* Celulares y pantallas compactas (<= 540px) */
+@media (max-width: 540px) {
+    .gallery-main .panorama-viewer {
+        height: 270px; /* Altura óptima para apreciar el panorama sin ocupar toda la pantalla */
+    }
+
+    /* Botones de zoom proporcionales y legibles para móvil */
+    .pnlm-controls-container {
+        top: 8px !important;
+        left: 8px !important;
+        gap: 4px !important;
+    }
+
+    .pnlm-zoom-controls {
+        width: 28px !important;
+        height: 56px !important;
+        border-radius: 6px !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25) !important;
+    }
+
+    .pnlm-zoom-in,
+    .pnlm-zoom-out {
+        width: 28px !important;
+        height: 28px !important;
+        background-size: 13px 13px !important;
+    }
+
+    /* Botón de pantalla completa proporcional para móvil */
+    .pnlm-fullscreen-toggle-button {
+        width: 28px !important;
+        height: 28px !important;
+        background-size: 13px 13px !important;
+        border-radius: 6px !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25) !important;
+    }
+
+    /* Posicionamiento de barra desplegable de ambientes en móvil */
+    .tour-scene-bar {
+        top: 8px;
+        right: 8px;
+        max-width: calc(100% - 48px);
+    }
+
+    .tour-dropdown-trigger {
+        padding: 4px 9px;
+        font-size: 11px;
+        gap: 5px;
+    }
+
+    .tour-dropdown-label {
+        font-size: 10px;
+    }
+
+    .tour-dropdown-current {
+        font-size: 11px;
+        padding: 2px 7px;
+        gap: 4px;
+    }
+
+    .tour-dropdown-current .tour-chip-num {
+        width: 14px;
+        height: 14px;
+        font-size: 8.5px;
+    }
+
+    .tour-dropdown-menu {
+        min-width: 175px;
+        right: 0;
+    }
+
+    .tour-dropdown-item {
+        padding: 7px 9px;
+        font-size: 11.5px;
+    }
+
+    /* Hotspots proporcionales en pantallas móviles */
+    .pnlm-hotspot.pnlm-scene {
+        width: 36px !important;
+        height: 36px !important;
+    }
+
+    .pnlm-hotspot.pnlm-scene::after {
+        width: 8px !important;
+        height: 8px !important;
+        margin-top: -4px !important;
+        margin-left: -2px !important;
+    }
+}
+
+/* Pantallas extra pequeñas (<= 380px) */
+@media (max-width: 380px) {
+    .tour-dropdown-label {
+        display: none; /* En pantallas muy pequeñas (< 380px), priorizar el nombre del ambiente */
+    }
+
+    .tour-dropdown-trigger {
+        padding: 4px 7px;
+    }
+
+    .tour-dropdown-current {
+        font-size: 10.5px;
+    }
+}
+
+/* Pantalla completa nativa: escala confortable */
+.pnlm-container:-webkit-full-screen .pnlm-controls-container,
+.pnlm-container:fullscreen .pnlm-controls-container {
+    top: 16px !important;
+    left: 16px !important;
+    gap: 8px !important;
+}
+
+.pnlm-container:-webkit-full-screen .pnlm-zoom-controls,
+.pnlm-container:fullscreen .pnlm-zoom-controls {
+    width: 36px !important;
+    height: 72px !important;
+}
+
+.pnlm-container:-webkit-full-screen .pnlm-zoom-in,
+.pnlm-container:-webkit-full-screen .pnlm-zoom-out,
+.pnlm-container:fullscreen .pnlm-zoom-in,
+.pnlm-container:fullscreen .pnlm-zoom-out,
+.pnlm-container:-webkit-full-screen .pnlm-fullscreen-toggle-button,
+.pnlm-container:fullscreen .pnlm-fullscreen-toggle-button {
+    width: 36px !important;
+    height: 36px !important;
+    background-size: 16px 16px !important;
+}

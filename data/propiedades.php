@@ -29,6 +29,99 @@ $terrenos = [
         'lat'             => -16.4090,
         'lng'             => -71.5375,
         'categoria'       => 'terrenos',
+        // ── Vista 360° (Fase 1) ──────────────────────────────────────────────
+        'has_panorama'    => true,
+        'panorama_360'    => '/img/tour360/exterior_360.webp',
+        // ── Tour Virtual 3D Punto a Punto (Fase 2 - estilo Kuula) ─────────────
+        'tour_virtual'    => [
+            'activo'  => true,
+            'escenas' => [
+                [
+                    'id'       => 'sala-principal',
+                    'titulo'   => 'Sala Principal',
+                    'imagen'   => '/img/tour360/sala.webp',
+                    'pitch'    => 0,
+                    'yaw'      => 0,
+                    'hfov'     => 100,
+                    'hotspots' => [
+                        [
+                            'pitch'    => -8,
+                            'yaw'      => 60,
+                            'type'     => 'scene',
+                            'sceneId'  => 'cocina',
+                            'text'     => 'Ir a la Cocina',
+                            'targetYaw'  => 0,
+                            'targetPitch' => 0,
+                        ],
+                        [
+                            'pitch'    => -8,
+                            'yaw'      => -80,
+                            'type'     => 'scene',
+                            'sceneId'  => 'dormitorio',
+                            'text'     => 'Ir al Dormitorio Principal',
+                            'targetYaw'  => 0,
+                            'targetPitch' => 0,
+                        ],
+                    ],
+                ],
+                [
+                    'id'       => 'cocina',
+                    'titulo'   => 'Cocina',
+                    'imagen'   => '/img/tour360/cocina.webp',
+                    'pitch'    => 0,
+                    'yaw'      => 0,
+                    'hfov'     => 100,
+                    'hotspots' => [
+                        [
+                            'pitch'    => -8,
+                            'yaw'      => 160,
+                            'type'     => 'scene',
+                            'sceneId'  => 'sala-principal',
+                            'text'     => 'Volver a la Sala',
+                            'targetYaw'  => 0,
+                            'targetPitch' => 0,
+                        ],
+                        [
+                            'pitch'    => -8,
+                            'yaw'      => -40,
+                            'type'     => 'scene',
+                            'sceneId'  => 'dormitorio',
+                            'text'     => 'Ir al Dormitorio',
+                            'targetYaw'  => 0,
+                            'targetPitch' => 0,
+                        ],
+                    ],
+                ],
+                [
+                    'id'       => 'dormitorio',
+                    'titulo'   => 'Dormitorio Principal',
+                    'imagen'   => '/img/tour360/dormitorio.webp?v=2',
+                    'pitch'    => 0,
+                    'yaw'      => 0,
+                    'hfov'     => 100,
+                    'hotspots' => [
+                        [
+                            'pitch'    => -8,
+                            'yaw'      => 100,
+                            'type'     => 'scene',
+                            'sceneId'  => 'sala-principal',
+                            'text'     => 'Volver a la Sala',
+                            'targetYaw'  => 0,
+                            'targetPitch' => 0,
+                        ],
+                        [
+                            'pitch'    => -8,
+                            'yaw'      => -120,
+                            'type'     => 'scene',
+                            'sceneId'  => 'cocina',
+                            'text'     => 'Ir a la Cocina',
+                            'targetYaw'  => 0,
+                            'targetPitch' => 0,
+                        ],
+                    ],
+                ],
+            ],
+        ],
     ],
     [
         'id'              => 'valle-sol',
@@ -413,6 +506,130 @@ $alquileres = [
         'categoria'       => 'alquiler',
     ]
 ];
+
+// ── Configuración estándar de Visor 360° y Tour Virtual 3D ──
+// Replicada en todas las propiedades de Terrenos, Casas y Departamentos
+$tour_360_default = [
+    'has_panorama'    => true,
+    'panorama_360'    => '/img/tour360/exterior_360.webp',
+    'tour_virtual'    => [
+        'activo'  => true,
+        'escenas' => [
+            [
+                'id'       => 'sala-principal',
+                'titulo'   => 'Sala Principal',
+                'imagen'   => '/img/tour360/sala.webp',
+                'pitch'    => 0,
+                'yaw'      => 0,
+                'hfov'     => 100,
+                'hotspots' => [
+                    [
+                        'pitch'       => -8,
+                        'yaw'         => 60,
+                        'type'        => 'scene',
+                        'sceneId'     => 'cocina',
+                        'text'        => 'Ir a la Cocina',
+                        'targetYaw'   => 0,
+                        'targetPitch' => 0,
+                    ],
+                    [
+                        'pitch'       => -8,
+                        'yaw'         => -80,
+                        'type'        => 'scene',
+                        'sceneId'     => 'dormitorio',
+                        'text'        => 'Ir al Dormitorio Principal',
+                        'targetYaw'   => 0,
+                        'targetPitch' => 0,
+                    ],
+                ],
+            ],
+            [
+                'id'       => 'cocina',
+                'titulo'   => 'Cocina',
+                'imagen'   => '/img/tour360/cocina.webp',
+                'pitch'    => 0,
+                'yaw'      => 0,
+                'hfov'     => 100,
+                'hotspots' => [
+                    [
+                        'pitch'       => -8,
+                        'yaw'         => 160,
+                        'type'        => 'scene',
+                        'sceneId'     => 'sala-principal',
+                        'text'        => 'Volver a la Sala',
+                        'targetYaw'   => 0,
+                        'targetPitch' => 0,
+                    ],
+                    [
+                        'pitch'       => -8,
+                        'yaw'         => -40,
+                        'type'        => 'scene',
+                        'sceneId'     => 'dormitorio',
+                        'text'        => 'Ir al Dormitorio',
+                        'targetYaw'   => 0,
+                        'targetPitch' => 0,
+                    ],
+                ],
+            ],
+            [
+                'id'       => 'dormitorio',
+                'titulo'   => 'Dormitorio Principal',
+                'imagen'   => '/img/tour360/dormitorio.webp?v=2',
+                'pitch'    => 0,
+                'yaw'      => 0,
+                'hfov'     => 100,
+                'hotspots' => [
+                    [
+                        'pitch'       => -8,
+                        'yaw'         => 100,
+                        'type'        => 'scene',
+                        'sceneId'     => 'sala-principal',
+                        'text'        => 'Volver a la Sala',
+                        'targetYaw'   => 0,
+                        'targetPitch' => 0,
+                    ],
+                    [
+                        'pitch'       => -8,
+                        'yaw'         => -120,
+                        'type'        => 'scene',
+                        'sceneId'     => 'cocina',
+                        'text'        => 'Ir a la Cocina',
+                        'targetYaw'   => 0,
+                        'targetPitch' => 0,
+                    ],
+                ],
+            ],
+        ],
+    ],
+];
+
+// Replicar en el resto de propiedades de Terrenos, Casas y Departamentos
+foreach ($terrenos as &$item) {
+    if (empty($item['has_panorama'])) {
+        $item['has_panorama'] = $tour_360_default['has_panorama'];
+        $item['panorama_360'] = $tour_360_default['panorama_360'];
+        $item['tour_virtual'] = $tour_360_default['tour_virtual'];
+    }
+}
+unset($item);
+
+foreach ($casas as &$item) {
+    if (empty($item['has_panorama'])) {
+        $item['has_panorama'] = $tour_360_default['has_panorama'];
+        $item['panorama_360'] = $tour_360_default['panorama_360'];
+        $item['tour_virtual'] = $tour_360_default['tour_virtual'];
+    }
+}
+unset($item);
+
+foreach ($departamentos as &$item) {
+    if (empty($item['has_panorama'])) {
+        $item['has_panorama'] = $tour_360_default['has_panorama'];
+        $item['panorama_360'] = $tour_360_default['panorama_360'];
+        $item['tour_virtual'] = $tour_360_default['tour_virtual'];
+    }
+}
+unset($item);
 
 function findProperty(string $slug): ?array {
     global $terrenos, $casas, $departamentos, $alquileres;

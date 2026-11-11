@@ -11,7 +11,7 @@ $base = $base ?? '';
 $estadoLabels = [
     'en-venta'        => ['label' => 'En venta',       'class' => 'badge--venta'],
     'en-construccion' => ['label' => 'En construcción', 'class' => 'badge--construccion'],
-    'entregado'       => ['label' => 'Entregado',       'class' => 'badge--entregado'],
+    'entregado'       => ['label' => 'Terminado',       'class' => 'badge--entregado'],
     'reservado'       => ['label' => 'Reservado',       'class' => 'badge--reservado'],
     'disponible'      => ['label' => 'Disponible',      'class' => 'badge--venta'],
 ];

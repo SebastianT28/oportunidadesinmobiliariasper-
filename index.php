@@ -12,6 +12,9 @@ $destacados_home = array_slice(
     array_filter(array_merge($terrenos, $casas, $departamentos), fn($p) => $p['destacado']),
     0, 6
 );
+
+// Departamentos en estreno (solo departamentos terminados para el acordeón arquitectónico del home)
+$depas_estreno = array_values(array_filter($departamentos, fn($p) => $p['estado'] === 'entregado'));
 ?>
 
 <!-- ═══════════════════════════════════════════════
@@ -177,6 +180,66 @@ $destacados_home = array_slice(
 
 
 <!-- ═══════════════════════════════════════════════
+     DEPARTAMENTOS EN ESTRENO — Acordeón Arquitectónico
+════════════════════════════════════════════════ -->
+<section class="estreno-section">
+    <div class="pd2"></div>
+    <div class="l-container">
+        <div class="estreno-header">
+            <div>
+                <p class="section-eyebrow">Nuevos lanzamientos</p>
+                <h2 class="main_title main-color">Departamentos en estreno</h2>
+            </div>
+            <a href="/departamentos?tab=estreno" class="estreno-ver-todos">
+                Ver todos <i class="ri-arrow-right-line"></i>
+            </a>
+        </div>
+    </div>
+    <div class="pd1"></div>
+    <div class="l-container">
+        <div class="estreno-accordion reveal-up" id="estrenoAccordion">
+            <?php foreach ($depas_estreno as $idx => $depa):
+                $distrito_depa = trim(explode(',', $depa['ubicacion'])[0]);
+                $resumen_depa  = ($depa['dormitorios'] ?? 2) . ' Dorm · ' . ($depa['area_min'] ?? 60) . ' m²';
+                $precio_depa   = ($depa['moneda'] ?? 'S/') . ' ' . number_format($depa['precio'], 0, '.', ',');
+                $img_depa      = '/' . ltrim($depa['imagenes'][0], '/');
+                $url_depa      = '/departamentos/' . ltrim($depa['slug'], '/');
+            ?>
+            <a href="<?= htmlspecialchars($url_depa, ENT_QUOTES) ?>"
+               class="estreno-panel <?= $idx === 0 ? 'is-active' : '' ?>"
+               data-bg="<?= htmlspecialchars($img_depa, ENT_QUOTES) ?>"
+               data-estreno-index="<?= $idx ?>"
+               aria-expanded="<?= $idx === 0 ? 'true' : 'false' ?>"
+               aria-label="Ver <?= htmlspecialchars($depa['nombre']) ?> en <?= htmlspecialchars($distrito_depa) ?>">
+                <div class="estreno-panel__overlay"></div>
+
+                <div class="estreno-panel__top">
+                    <span class="estreno-panel__district"><?= htmlspecialchars($distrito_depa) ?></span>
+                </div>
+
+                <div class="estreno-panel__bottom">
+                    <h3 class="estreno-panel__compact-title"><?= htmlspecialchars($depa['nombre']) ?></h3>
+
+                    <div class="estreno-panel__expanded">
+                        <div class="estreno-panel__info">
+                            <h3><?= htmlspecialchars($depa['nombre']) ?></h3>
+                            <p class="estreno-panel__meta"><?= htmlspecialchars($resumen_depa) ?></p>
+                        </div>
+                        <div class="estreno-panel__price-box">
+                            <span class="estreno-panel__price-label">Desde</span>
+                            <span class="estreno-panel__price-val"><?= htmlspecialchars($precio_depa) ?></span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <?php endforeach; ?>
+        </div>
+    </div>
+    <div class="pd2"></div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
      PROPIEDADES DESTACADAS — Grid de cards
 ════════════════════════════════════════════════ -->
 <section class="featured-grid-section bg-accent">
@@ -315,6 +378,71 @@ const countObs = new IntersectionObserver((entries) => {
 }, { threshold: 0.5 });
 countEls.forEach(el => countObs.observe(el));
 
+// ── Acordeón Arquitectónico: Departamentos en estreno ──
+(function () {
+    const accordion = document.getElementById('estrenoAccordion');
+    const panels = document.querySelectorAll('#estrenoAccordion .estreno-panel');
+    if (!accordion || !panels.length) return;
+
+    // Carga diferida de fondos (evita competir con la imagen LCP del Hero)
+    function loadEstrenoBackgrounds() {
+        panels.forEach(panel => {
+            const bg = panel.getAttribute('data-bg');
+            if (bg) {
+                panel.style.backgroundImage = `url('${bg}')`;
+                panel.removeAttribute('data-bg');
+            }
+        });
+    }
+
+    if ('IntersectionObserver' in window) {
+        const bgObs = new IntersectionObserver((entries, obs) => {
+            if (entries.some(e => e.isIntersecting)) {
+                loadEstrenoBackgrounds();
+                obs.disconnect();
+            }
+        }, { rootMargin: '350px 0px' });
+        bgObs.observe(accordion);
+    } else {
+        loadEstrenoBackgrounds();
+    }
+
+    function activatePanel(targetPanel) {
+        panels.forEach(panel => {
+            const isTarget = panel === targetPanel;
+            panel.classList.toggle('is-active', isTarget);
+            panel.setAttribute('aria-expanded', isTarget ? 'true' : 'false');
+        });
+    }
+
+    function isDesktopHover() {
+        return window.innerWidth > 992 && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    }
+
+    panels.forEach(panel => {
+        panel.addEventListener('mouseenter', () => {
+            if (isDesktopHover()) {
+                activatePanel(panel);
+            }
+        });
+
+        panel.addEventListener('keyup', (e) => {
+            if (e.key === 'Tab') {
+                activatePanel(panel);
+            }
+        });
+
+        panel.addEventListener('click', (e) => {
+            // Si la tarjeta está oculta/contraída (en celular/tablet o sin hover previo),
+            // el primer toque/clic solo la agranda para revisar la información;
+            // el segundo toque/clic sobre la tarjeta ya desplegada redirige a la propiedad.
+            if (!panel.classList.contains('is-active')) {
+                e.preventDefault();
+                activatePanel(panel);
+            }
+        });
+    });
+})();
 
 </script>
 

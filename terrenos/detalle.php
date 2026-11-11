@@ -191,7 +191,7 @@ $has_tour = !empty($prop['tour_virtual']['activo']) && !empty($prop['tour_virtua
     </div>
     <div class="detail-header__right">
         <span class="badge-estado badge--<?= $prop['estado'] ?>">
-            <?= $prop['estado'] === 'en-venta' ? 'En venta' : ($prop['estado'] === 'en-construccion' ? 'En construcción' : 'Entregado') ?>
+            <?= $prop['estado'] === 'en-venta' ? 'En venta' : ($prop['estado'] === 'en-construccion' ? 'En construcción' : 'Terminado') ?>
         </span>
     </div>
 </div>

@@ -190,7 +190,7 @@ $has_tour = !empty($prop['tour_virtual']['activo']) && !empty($prop['tour_virtua
             <?php
             echo match($prop['estado']) {
                 'en-construccion' => '🔧 En construcción',
-                'entregado'       => '✅ Entregado',
+                'entregado'       => '✅ Terminado',
                 default           => 'En venta',
             };
             ?>

@@ -720,7 +720,7 @@ $page = "Novedades del sector inmobiliario";
 
     
 
-                                        <span class="dropdown__title">Proyectos entregados</span>
+                                        <span class="dropdown__title">Proyectos terminados</span>
 
     
 
@@ -876,7 +876,7 @@ $page = "Novedades del sector inmobiliario";
 
                                             <li>
 
-                                                <a href="#" class="dropdown__link">Proyectos entregados</a>
+                                                <a href="#" class="dropdown__link">Proyectos terminados</a>
 
                                             </li>
 

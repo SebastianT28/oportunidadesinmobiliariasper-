@@ -21,7 +21,7 @@ $page = "Inicio";
     <link rel="shortcut icon" href="img/favicon.webp" type="image/x-icon">
     <link rel="icon" type="image/png" href="img/favicon.webp">
 
-    <meta name="description" content="Departamentos en construcción y entregados en Arequipa. Encuentra el departamento ideal para tu familia con las mejores ubicaciones y financiamiento. Oportunidades Inmobiliarias Perú.">
+    <meta name="description" content="Departamentos en construcción y terminados en Arequipa. Encuentra el departamento ideal para tu familia con las mejores ubicaciones y financiamiento. Oportunidades Inmobiliarias Perú.">
     <meta name="keywords" content="departamentos arequipa, departamentos en venta arequipa, venta departamentos, departamentos nuevos arequipa">
 
     <link rel="canonical" href="https://oportunidadesinmobiliariasperu.com/depas/">
@@ -31,7 +31,7 @@ $page = "Inicio";
     <meta property="og:url" content="https://oportunidadesinmobiliariasperu.com/depas/">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="es_PE">
-    <meta property="og:description" content="Departamentos en construcción y entregados en Arequipa. La mejor oportunidad para tu familia.">
+    <meta property="og:description" content="Departamentos en construcción y terminados en Arequipa. La mejor oportunidad para tu familia.">
     <meta property="og:image" content="https://oportunidadesinmobiliariasperu.com/depas/img/fb_banner.webp">
 
     <meta name="msapplication-TileColor" content="#ffffff">

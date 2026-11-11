@@ -146,7 +146,7 @@
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;600;800&display=swap"></noscript>
 
     <!-- CSS propio: crítico, carga síncrona con versión para cache busting -->
-    <link rel="stylesheet" type="text/css" href="/css/styles2k2k2.css?v=0.2.4">
+    <link rel="stylesheet" type="text/css" href="/css/styles2k2k2.css?v=0.2.7">
 
     <!-- CSS externos no críticos: carga diferida para no bloquear render -->
     <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" onload="this.onload=null;this.rel='stylesheet'">
@@ -408,7 +408,33 @@
                                                 <a href="/departamentos/residencias-norte" class="dropdown__link">Residencias del Norte</a>
                                             </li>
                                             <li>
-                                                <a href="/departamentos/torres-del-sol" class="dropdown__link">Torres del Sol</a>
+                                                <a href="/departamentos/residencial-los-arces" class="dropdown__link">Residencial Los Arces</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="dropdown__group">
+                                        <div class="dropdown__icon">
+                                            <i class="ri-key-2-line"></i>
+                                        </div>
+    
+                                        <span class="dropdown__title">Departamentos en estreno</span>
+    
+                                        <ul class="dropdown__list">
+                                            <li>
+                                                <a href="/departamentos/terrazas-de-vallecito" class="dropdown__link">Terrazas de Vallecito</a>
+                                            </li>
+                                            <li>
+                                                <a href="/departamentos/residencias-norte" class="dropdown__link">Residencias del Norte</a>
+                                            </li>
+                                            <li>
+                                                <a href="/departamentos/residencial-los-arces" class="dropdown__link">Residencial Los Arces</a>
+                                            </li>
+                                            <li>
+                                                <a href="/departamentos/mirador-santa-catalina" class="dropdown__link">Mirador de Santa Catalina</a>
+                                            </li>
+                                            <li>
+                                                <a href="/departamentos?tab=estreno" class="dropdown__link" style="color:var(--main2-color);font-weight:600;">Ver todos &rarr;</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -438,14 +464,17 @@
                                             <i class="flaticon-building"></i>
                                         </div>
     
-                                        <span class="dropdown__title">Proyectos entregados</span>
+                                        <span class="dropdown__title">Proyectos terminados</span>
     
                                         <ul class="dropdown__list">
                                             <li>
-                                                <a href="/departamentos/condominio-verde" class="dropdown__link">Condominio Verde</a>
+                                                <a href="/departamentos/terrazas-de-vallecito" class="dropdown__link">Terrazas de Vallecito</a>
                                             </li>
                                             <li>
-                                                <a href="/departamentos/torres-del-sol" class="dropdown__link">Torres del Sol</a>
+                                                <a href="/departamentos/mirador-santa-catalina" class="dropdown__link">Mirador de Santa Catalina</a>
+                                            </li>
+                                            <li>
+                                                <a href="/departamentos/residencial-los-arces" class="dropdown__link">Residencial Los Arces</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -580,7 +609,7 @@
                                                 <a href="/novedades/habilitacion-urbana-titulo-propiedad" class="dropdown__link">Habilitación urbana y SUNARP</a>
                                             </li>
                                             <li>
-                                                <a href="/departamentos/condominio-verde" class="dropdown__link">Proyectos entregados</a>
+                                                <a href="/departamentos?tab=entregados" class="dropdown__link">Proyectos terminados</a>
                                             </li>
                                         </ul>
                                     </div>

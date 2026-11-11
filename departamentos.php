@@ -2,13 +2,19 @@
 require_once 'data/propiedades.php';
 
 $categoria   = 'departamentos';
-$page        = 'Departamentos en Arequipa — En construcción y entregados';
-$description = 'Departamentos en venta en Arequipa. Proyectos en construcción y entregados. Desde S/ 175,000 en Cayma, Yanahuara, Paucarpata. 2 y 3 dormitorios.';
+$page        = 'Departamentos en Arequipa — En construcción y terminados';
+$description = 'Departamentos en venta en Arequipa. Proyectos en construcción y terminados. Desde S/ 175,000 en Cayma, Yanahuara, Paucarpata. 2 y 3 dormitorios.';
 $canonical   = 'https://oportunidadesinmobiliariasperu.com/departamentos';
 include_once 'header.php';
 
 $en_construccion = array_filter($departamentos, fn($p) => $p['estado'] === 'en-construccion');
 $entregados      = array_filter($departamentos, fn($p) => $p['estado'] === 'entregado');
+$en_estreno      = $entregados;
+
+$requested_tab = $_GET['tab'] ?? 'en-construccion';
+$active_tab    = in_array($requested_tab, ['estreno', 'en-construccion', 'entregados'], true)
+    ? $requested_tab
+    : 'en-construccion';
 ?>
 
 <div class="catalog-hero" style="background-image: url('/img/proyectos/eldorado.webp');">
@@ -19,7 +25,7 @@ $entregados      = array_filter($departamentos, fn($p) => $p['estado'] === 'entr
             <span>Departamentos</span>
         </nav>
         <h1 class="catalog-hero__title">Departamentos en Arequipa</h1>
-        <p class="catalog-hero__sub">Proyectos en construcción y ya entregados en los mejores distritos de Arequipa.</p>
+        <p class="catalog-hero__sub">Proyectos de estreno, en construcción y terminados en Arequipa.</p>
     </div>
 </div>
 
@@ -27,13 +33,17 @@ $entregados      = array_filter($departamentos, fn($p) => $p['estado'] === 'entr
 <section class="depa-tabs-section">
     <div class="l-container">
         <div class="depa-tabs" id="depaTabs">
-            <button class="depa-tab active" data-target="en-construccion">
+            <button class="depa-tab <?= $active_tab === 'en-construccion' ? 'active' : '' ?>" data-target="en-construccion">
                 <i class="ri-building-4-line"></i> En construcción
                 <span class="depa-tab__count"><?= count($en_construccion) ?></span>
             </button>
-            <button class="depa-tab" data-target="entregados">
-                <i class="ri-check-double-line"></i> Entregados
+            <button class="depa-tab <?= $active_tab === 'entregados' ? 'active' : '' ?>" data-target="entregados">
+                <i class="ri-check-double-line"></i> Terminados
                 <span class="depa-tab__count"><?= count($entregados) ?></span>
+            </button>
+            <button class="depa-tab <?= $active_tab === 'estreno' ? 'active' : '' ?>" data-target="estreno">
+                <i class="ri-key-2-line"></i> Departamentos en estreno
+                <span class="depa-tab__count"><?= count($en_estreno) ?></span>
             </button>
         </div>
     </div>
@@ -58,13 +68,14 @@ $entregados      = array_filter($departamentos, fn($p) => $p['estado'] === 'entr
                     <option value="250000">Hasta S/ 250,000</option>
                     <option value="320000">Hasta S/ 320,000</option>
                 </select>
+            </div>
             <button class="button primary w-full mt-1" onclick="applyFilters()">Aplicar filtros</button>
             <button class="btn-text mt-1" onclick="clearFilters()">Limpiar filtros</button>
         </aside>
 
         <main class="catalog-main">
             <!-- En construcción -->
-            <div id="panel-en-construccion" class="depa-panel">
+            <div id="panel-en-construccion" class="depa-panel" style="<?= $active_tab === 'en-construccion' ? '' : 'display:none;' ?>">
                 <h3 class="depa-panel__title">
                     <i class="ri-building-4-line"></i> Proyectos en construcción
                 </h3>
@@ -76,14 +87,27 @@ $entregados      = array_filter($departamentos, fn($p) => $p['estado'] === 'entr
                 </div>
             </div>
 
-            <!-- Entregados -->
-            <div id="panel-entregados" class="depa-panel" style="display:none;">
+            <!-- Terminados -->
+            <div id="panel-entregados" class="depa-panel" style="<?= $active_tab === 'entregados' ? '' : 'display:none;' ?>">
                 <h3 class="depa-panel__title">
-                    <i class="ri-check-double-line"></i> Proyectos entregados
+                    <i class="ri-check-double-line"></i> Proyectos terminados
                 </h3>
                 <p class="depa-panel__sub">Unidades disponibles de propietarios directos.</p>
                 <div class="props-grid">
                     <?php foreach ($entregados as $prop): ?>
+                    <?php include 'includes/card-propiedad.php'; ?>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+
+            <!-- Departamentos en estreno (Solo terminados) -->
+            <div id="panel-estreno" class="depa-panel" style="<?= $active_tab === 'estreno' ? '' : 'display:none;' ?>">
+                <h3 class="depa-panel__title">
+                    <i class="ri-key-2-line"></i> Departamentos en estreno
+                </h3>
+                <p class="depa-panel__sub">Departamentos terminados listos para entrega inmediata.</p>
+                <div class="props-grid">
+                    <?php foreach ($en_estreno as $prop): ?>
                     <?php include 'includes/card-propiedad.php'; ?>
                     <?php endforeach; ?>
                 </div>
@@ -106,7 +130,11 @@ document.querySelectorAll('.depa-tab').forEach(tab => {
         document.querySelectorAll('.depa-tab').forEach(t => t.classList.remove('active'));
         tab.classList.add('active');
         document.querySelectorAll('.depa-panel').forEach(p => p.style.display = 'none');
-        document.getElementById('panel-' + tab.dataset.target).style.display = '';
+        const activePanel = document.getElementById('panel-' + tab.dataset.target);
+        if (activePanel) {
+            activePanel.style.display = '';
+            activePanel.querySelectorAll('.reveal-card').forEach(el => el.classList.add('is-visible'));
+        }
         applyFilters();
     });
 });

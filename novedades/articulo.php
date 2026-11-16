@@ -10,10 +10,14 @@ if (!$slug) {
 
 // Redirecciones 301 para slugs antiguos o alias
 $aliases = [
-    'protege-tu-hogar-de-las-lluvias' => 'protege-tu-hogar-lluvias',
-    'mejores-zonas-arequipa'          => 'mejores-zonas-aire-puro-arequipa',
-    'donde-comprar-mi-primer-hogar'   => 'donde-comprar-futuro-hogar',
-    'cuida-el-futuro-de-tu-familia'   => 'invertir-bienes-raices-2026',
+    'protege-tu-hogar-de-las-lluvias'      => 'protege-tu-hogar-lluvias',
+    'mejores-zonas-arequipa'               => 'analisis-inversion-departamentos-bustamante-y-rivero-arequipa',
+    'mejores-zonas-aire-puro-arequipa'     => 'analisis-inversion-departamentos-bustamante-y-rivero-arequipa',
+    'donde-comprar-mi-primer-hogar'        => 'rentabilidad-departamentos-cercado-arequipa-alquiler-airbnb',
+    'donde-comprar-futuro-hogar'           => 'rentabilidad-departamentos-cercado-arequipa-alquiler-airbnb',
+    'cuida-el-futuro-de-tu-familia'        => 'proyeccion-economica-2027-arequipa-inversion-departamentos',
+    'invertir-bienes-raices-2026'          => 'proyeccion-economica-2027-arequipa-inversion-departamentos',
+    'habilitacion-urbana-titulo-propiedad' => 'analisis-inversion-departamentos-bustamante-y-rivero-arequipa',
 ];
 if (isset($aliases[$slug])) {
     header('Location: /novedades/' . $aliases[$slug], true, 301);
@@ -36,29 +40,41 @@ if (!$articulo) {
     exit;
 }
 
-$page        = htmlspecialchars($articulo['titulo']) . ' | Novedades Oportunidades Inmobiliarias Perú';
-$description = htmlspecialchars($articulo['resumen']);
-$canonical   = 'https://oportunidadesinmobiliariasperu.com/novedades/' . htmlspecialchars($articulo['slug']);
-$ogImage     = 'https://oportunidadesinmobiliariasperu.com/' . ltrim($articulo['imagen'], '/');
+$meta_title_exact = $articulo['meta_title'] ?? null;
+$page        = $articulo['titulo'] . ' | Novedades';
+$description = $articulo['meta_description'] ?? $articulo['resumen'];
+$canonical   = 'https://oportunidadesinmobiliariasperu.com/novedades/' . $articulo['slug'];
+$og_image    = 'https://oportunidadesinmobiliariasperu.com/' . ltrim($articulo['imagen'], '/');
+$ogImage     = $og_image;
 
-$relacionados = recentArticles($articulo['slug'], 3);
-$currentUrl   = 'https://oportunidadesinmobiliariasperu.com/novedades/' . $articulo['slug'];
+$relacionados      = recentArticles($articulo['slug'], 3);
+$currentUrl        = 'https://oportunidadesinmobiliariasperu.com/novedades/' . $articulo['slug'];
+$preload_lcp_image = '/' . ltrim($articulo['imagen'], '/');
 
 include_once __DIR__ . '/../header.php';
 ?>
 
-<!-- Schema.org BlogPosting -->
+<!-- Schema.org BlogPosting (Con señales E-E-A-T y sede física en Arequipa) -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "<?php echo addslashes($articulo['titulo']); ?>",
-  "description": "<?php echo addslashes($articulo['resumen']); ?>",
-  "image": "<?php echo $ogImage; ?>",
-  "datePublished": "<?php echo $articulo['fecha_iso']; ?>",
+  "headline": <?php echo json_encode($articulo['titulo'], JSON_UNESCAPED_UNICODE); ?>,
+  "description": <?php echo json_encode($description, JSON_UNESCAPED_UNICODE); ?>,
+  "image": <?php echo json_encode($og_image, JSON_UNESCAPED_SLASHES); ?>,
+  "datePublished": <?php echo json_encode($articulo['fecha_iso']); ?>,
+  "dateModified": <?php echo json_encode($articulo['fecha_iso']); ?>,
   "author": {
     "@type": "Organization",
-    "name": "<?php echo addslashes($articulo['autor']); ?>"
+    "name": <?php echo json_encode($articulo['autor'], JSON_UNESCAPED_UNICODE); ?>,
+    "url": "https://oportunidadesinmobiliariasperu.com/nosotros",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Av. Arequipa #1477",
+      "addressLocality": "Arequipa",
+      "addressRegion": "Arequipa",
+      "addressCountry": "PE"
+    }
   },
   "publisher": {
     "@type": "Organization",
@@ -70,7 +86,7 @@ include_once __DIR__ . '/../header.php';
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "<?php echo $canonical; ?>"
+    "@id": <?php echo json_encode($canonical, JSON_UNESCAPED_SLASHES); ?>
   }
 }
 </script>
@@ -105,14 +121,14 @@ include_once __DIR__ . '/../header.php';
 
                 <div class="article-share-top">
                     <span>Compartir:</span>
-                    <a href="https://api.whatsapp.com/send?text=<?php echo urlencode($articulo['titulo'] . ' ' . $currentUrl); ?>" target="_blank" rel="noopener" class="share-btn wa" title="Compartir en WhatsApp">
-                        <i class="ri-whatsapp-line"></i>
+                    <a href="https://api.whatsapp.com/send?text=<?php echo urlencode($articulo['titulo'] . ' ' . $currentUrl); ?>" target="_blank" rel="noopener" class="share-btn wa" aria-label="Compartir en WhatsApp" title="Compartir en WhatsApp">
+                        <i class="ri-whatsapp-line" aria-hidden="true"></i>
                     </a>
-                    <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode($currentUrl); ?>" target="_blank" rel="noopener" class="share-btn fb" title="Compartir en Facebook">
-                        <i class="ri-facebook-fill"></i>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode($currentUrl); ?>" target="_blank" rel="noopener" class="share-btn fb" aria-label="Compartir en Facebook" title="Compartir en Facebook">
+                        <i class="ri-facebook-fill" aria-hidden="true"></i>
                     </a>
-                    <button class="share-btn copy" onclick="copyArticleUrl()" title="Copiar enlace">
-                        <i class="ri-links-line"></i>
+                    <button type="button" class="share-btn copy" onclick="copyArticleUrl()" aria-label="Copiar enlace del artículo" title="Copiar enlace">
+                        <i class="ri-links-line" aria-hidden="true"></i>
                     </button>
                 </div>
             </div>
@@ -128,7 +144,7 @@ include_once __DIR__ . '/../header.php';
             <!-- Columna Principal -->
             <main class="article-main-col">
                 <div class="article-featured-media">
-                    <img src="/<?php echo htmlspecialchars($articulo['imagen']); ?>" alt="<?php echo htmlspecialchars($articulo['titulo']); ?>">
+                    <img src="/<?php echo htmlspecialchars($articulo['imagen']); ?>" alt="<?php echo htmlspecialchars($articulo['imagen_alt'] ?? $articulo['titulo']); ?>" width="1200" height="675" loading="eager" fetchpriority="high" decoding="sync">
                 </div>
 
                 <div class="article-body-content">
@@ -163,14 +179,14 @@ include_once __DIR__ . '/../header.php';
                     </div>
                 </div>
 
-                <!-- Bio autor -->
+                <!-- Bio autor (Señal E-E-A-T Institucional) -->
                 <div class="author-bio-card">
                     <div class="bio-avatar">
                         <i class="ri-shield-user-line"></i>
                     </div>
                     <div class="bio-info">
-                        <h3>Publicado por <?php echo htmlspecialchars($articulo['autor']); ?></h3>
-                        <p>Asesoría y desarrollo inmobiliario con más de 5 años en Arequipa. Nos dedicamos a brindar información transparente y proyectos con habilitación urbana garantizada para el bienestar de tu familia.</p>
+                        <h3><?php echo !empty($articulo['firma_eeat_titulo']) ? htmlspecialchars($articulo['firma_eeat_titulo']) : ('Publicado por ' . htmlspecialchars($articulo['autor'])); ?></h3>
+                        <p><?php echo !empty($articulo['firma_eeat']) ? htmlspecialchars($articulo['firma_eeat']) : 'Redactado por el Equipo de Análisis e Inversión de Oportunidades Inmobiliarias Perú — Especialistas en Saneamiento y Desarrollo Urbano en Arequipa (Av. Arequipa #1477).'; ?></p>
                     </div>
                 </div>
             </main>
@@ -187,7 +203,7 @@ include_once __DIR__ . '/../header.php';
                         <div class="sidebar-recent-list">
                             <?php foreach ($relacionados as $rel): ?>
                             <a href="/novedades/<?php echo htmlspecialchars($rel['slug']); ?>" class="recent-article-item">
-                                <img src="/<?php echo htmlspecialchars($rel['imagen']); ?>" alt="<?php echo htmlspecialchars($rel['titulo']); ?>" loading="lazy">
+                                <img src="/<?php echo htmlspecialchars($rel['imagen']); ?>" alt="<?php echo htmlspecialchars($rel['imagen_alt'] ?? $rel['titulo']); ?>" width="120" height="80" loading="lazy" decoding="async">
                                 <div class="recent-article-info">
                                     <span class="recent-cat"><?php echo htmlspecialchars($rel['categoria']); ?></span>
                                     <h5><?php echo htmlspecialchars($rel['titulo']); ?></h5>
@@ -203,21 +219,21 @@ include_once __DIR__ . '/../header.php';
                         <h4 class="sidebar-widget-title"><i class="ri-community-line"></i> Proyectos recomendados</h4>
                         <ul class="sidebar-props-list">
                             <li>
-                                <a href="/terrenos/villa-victoria">
-                                    <strong>Villa Victoria</strong>
-                                    <span>Lotes en Chiguata desde S/ 20,500</span>
+                                <a href="/departamentos/terrazas-de-vallecito">
+                                    <strong>Terrazas de Vallecito</strong>
+                                    <span>Departamentos de estreno en Cercado</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="/terrenos/valle-sol">
-                                    <strong>Valle Sol</strong>
-                                    <span>La Joya con sol todo el año desde S/ 8,900</span>
+                                <a href="/departamentos/proyecto-mirador">
+                                    <strong>Mirador del Misti</strong>
+                                    <span>Departamentos en Yanahuara desde S/ 265,000</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="/casas/las-lomas">
-                                    <strong>Las Lomas I</strong>
-                                    <span>Casas de 3 dorm. listas para habitar</span>
+                                <a href="/departamentos/proyecto-altamira">
+                                    <strong>Altamira Residencial</strong>
+                                    <span>Edificio moderno en Cayma de 2 y 3 dorm.</span>
                                 </a>
                             </li>
                         </ul>
@@ -245,7 +261,7 @@ include_once __DIR__ . '/../header.php';
             <article class="article-card">
                 <div class="article-card__thumb">
                     <a href="/novedades/<?php echo htmlspecialchars($rel['slug']); ?>" tabindex="-1" aria-hidden="true">
-                        <img src="/<?php echo htmlspecialchars($rel['imagen']); ?>" alt="<?php echo htmlspecialchars($rel['titulo']); ?>" loading="lazy">
+                        <img src="/<?php echo htmlspecialchars($rel['imagen']); ?>" alt="<?php echo htmlspecialchars($rel['titulo']); ?>" width="600" height="338" loading="lazy" decoding="async">
                     </a>
                     <span class="category-pill thumb-pill"><?php echo htmlspecialchars($rel['categoria']); ?></span>
                 </div>
@@ -261,7 +277,7 @@ include_once __DIR__ . '/../header.php';
                     </h3>
                     <p class="article-card__excerpt"><?php echo htmlspecialchars($rel['resumen']); ?></p>
                     <div class="article-card__footer">
-                        <span class="author-tag"><i class="ri-user-smile-line"></i> <?php echo htmlspecialchars($rel['autor']); ?></span>
+                        <span class="author-tag"><i class="ri-user-smile-line"></i> <?php echo htmlspecialchars($rel['autor_corto'] ?? $rel['autor']); ?></span>
                         <a href="/novedades/<?php echo htmlspecialchars($rel['slug']); ?>" class="read-link">
                             Leer más <i class="ri-arrow-right-line"></i>
                         </a>

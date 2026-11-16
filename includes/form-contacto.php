@@ -5,12 +5,12 @@
  *   $form_proyecto — nombre del proyecto (pre-llena el select)
  *   $form_titulo   — título del formulario
  */
-$form_titulo   = $form_titulo ?? 'Solicita información';
+$form_titulo   = $form_titulo ?? 'Solicita Información y Precios';
 $form_proyecto = $form_proyecto ?? '';
 ?>
 <div class="contact-form-wrap">
-    <h4 class="contact-form__titulo"><?= htmlspecialchars($form_titulo) ?></h4>
-    <p class="contact-form__sub">Un asesor se comunicará contigo en menos de 24 horas.</p>
+    <h3 class="contact-form__titulo"><?= htmlspecialchars($form_titulo) ?></h3>
+    <p class="contact-form__sub">Un asesor inmobiliario se comunicará contigo en menos de 24 horas.</p>
     <form class="contact-form" id="form-lead" action="" method="POST" novalidate>
         <input type="hidden" name="proyecto" value="<?= htmlspecialchars($form_proyecto) ?>">
         <div class="form-input">
@@ -27,11 +27,10 @@ $form_proyecto = $form_proyecto ?? '';
         </div>
         <div class="form-input">
             <select name="interes" id="lead-interes">
-                <option value="" disabled selected>Selecciona una opción</option>
-                <option value="terreno" <?= $form_proyecto === 'terreno' ? 'selected' : '' ?>>Terreno</option>
+                <option value="departamento" <?= ($form_proyecto === '' || $form_proyecto === 'departamento') ? 'selected' : '' ?>>Departamento</option>
                 <option value="casa" <?= $form_proyecto === 'casa' ? 'selected' : '' ?>>Casa</option>
-                <option value="departamento" <?= $form_proyecto === 'departamento' ? 'selected' : '' ?>>Departamento</option>
-                <option value="alquiler">Alquiler</option>
+                <option value="terreno" <?= $form_proyecto === 'terreno' ? 'selected' : '' ?>>Terreno</option>
+                <option value="alquiler" <?= $form_proyecto === 'alquiler' ? 'selected' : '' ?>>Alquiler</option>
             </select>
             <label for="lead-interes">Me interesa</label>
         </div>

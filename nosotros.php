@@ -1,19 +1,90 @@
 <?php
-$page        = 'Nosotros — Quiénes somos | Oportunidades Inmobiliarias Perú';
-$description = 'Somos Oportunidades Inmobiliarias Perú, empresa arequipeña con más de 5 años conectando familias con sus proyectos de vida. Conoce nuestra misión, visión y equipo.';
-$canonical   = 'https://oportunidadesinmobiliariasperu.com/nosotros';
+$page              = 'Quiénes Somos — Especialistas en Departamentos en Arequipa';
+$meta_title_exact  = 'Quiénes Somos: Inmobiliaria de Departamentos en Arequipa | Oportunidades Inmobiliarias Perú';
+$description       = 'Conoce Oportunidades Inmobiliarias Perú, especialistas en departamentos en Arequipa en estreno, construcción y preventa como Edificio Alba y Edificio Zentra.';
+$canonical         = 'https://oportunidadesinmobiliariasperu.com/nosotros';
+$og_image          = 'https://oportunidadesinmobiliariasperu.com/img/sections/nosotros-equipo-departamentos-arequipa.webp';
+$preload_lcp_image = '/img/sections/bg_about.webp';
 include_once 'header.php';
 ?>
 
-<div class="catalog-hero" style="background-image: url('/img/sections/bg_about.webp');">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "Quiénes Somos — Oportunidades Inmobiliarias Perú",
+  "description": "Inmobiliaria en Arequipa especializada en la venta y desarrollo de departamentos de estreno, en construcción y en preventa.",
+  "url": "https://oportunidadesinmobiliariasperu.com/nosotros",
+  "mainEntity": {
+    "@type": "RealEstateAgent",
+    "name": "Oportunidades Inmobiliarias Perú",
+    "url": "https://oportunidadesinmobiliariasperu.com/",
+    "image": "https://oportunidadesinmobiliariasperu.com/img/sections/nosotros-equipo-departamentos-arequipa.webp",
+    "telephone": "+51999653412",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Av. Arequipa #1477",
+      "addressLocality": "Arequipa",
+      "addressRegion": "Arequipa",
+      "postalCode": "04001",
+      "addressCountry": "PE"
+    },
+    "areaServed": [
+      { "@type": "City", "name": "Arequipa" },
+      { "@type": "AdministrativeArea", "name": "Yanahuara" },
+      { "@type": "AdministrativeArea", "name": "Cayma" },
+      { "@type": "AdministrativeArea", "name": "José Luis Bustamante y Rivero" },
+      { "@type": "AdministrativeArea", "name": "Cercado de Arequipa" },
+      { "@type": "AdministrativeArea", "name": "Cerro Colorado" }
+    ],
+    "makesOffer": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "ApartmentComplex",
+          "name": "Edificio Alba",
+          "url": "https://oportunidadesinmobiliariasperu.com/departamentos/edificio-alba"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "ApartmentComplex",
+          "name": "Edificio Zentra",
+          "url": "https://oportunidadesinmobiliariasperu.com/departamentos/edificio-zentra"
+        }
+      }
+    ]
+  },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Inicio",
+        "item": "https://oportunidadesinmobiliariasperu.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Nosotros",
+        "item": "https://oportunidadesinmobiliariasperu.com/nosotros"
+      }
+    ]
+  }
+}
+</script>
+
+<div class="catalog-hero catalog-hero--nosotros">
     <div class="catalog-hero__overlay"></div>
     <div class="l-container catalog-hero__content">
-        <nav class="breadcrumb">
-            <a href="/">Inicio</a> <i class="ri-arrow-right-s-line"></i>
+        <nav class="breadcrumb" aria-label="Ruta de navegación">
+            <a href="/">Inicio</a> <i class="ri-arrow-right-s-line" aria-hidden="true"></i>
             <span>Nosotros</span>
         </nav>
-        <h1 class="catalog-hero__title">Sobre Oportunidades Inmobiliarias</h1>
-        <p class="catalog-hero__sub">Conectamos familias arequipeñas con sus proyectos de vida desde hace más de 5 años.</p>
+        <h1 class="catalog-hero__title">Especialistas en departamentos en Arequipa</h1>
+        <p class="catalog-hero__sub">Más de 5 años desarrollando y comercializando edificios residenciales en los distritos con mayor valorización de Arequipa.</p>
     </div>
 </div>
 
@@ -23,18 +94,20 @@ include_once 'header.php';
     <div class="about-grid l-container">
         <div class="about-text reveal-up">
             <p class="section-eyebrow">Quiénes somos</p>
-            <h2>Más que una inmobiliaria, somos tu aliado.</h2>
-            <p>Somos una empresa arequipeña especializada en el desarrollo y comercialización de proyectos residenciales. Nuestra misión es hacer accesible el sueño de tener un hogar propio para cada familia peruana.</p>
-            <p>Desde lotes económicos hasta departamentos de lujo, trabajamos con integridad, transparencia y compromiso real con nuestros clientes.</p>
+            <h2>Desarrollamos departamentos pensados para vivir e invertir en Arequipa</h2>
+            <p>En Oportunidades Inmobiliarias Perú acompañamos a familias e inversionistas a comprar departamentos en estreno, construcción y preventa. Desarrollamos edificios residenciales en Yanahuara, Cayma, Cercado, José Luis Bustamante y Rivero y Cerro Colorado.</p>
+            <p>Nuestros proyectos priorizan iluminación natural, distribución funcional y eficiencia energética. Hoy destacan en preventa <a href="/departamentos/edificio-alba">Edificio Alba</a> (Bustamante y Rivero) y <a href="/departamentos/edificio-zentra">Edificio Zentra</a> (Cercado de Arequipa), con departamentos de 1 a 3 dormitorios.</p>
             <ul class="about-values">
-                <li><i class="ri-check-double-line"></i> Transparencia en cada operación</li>
-                <li><i class="ri-check-double-line"></i> Asesoría personalizada sin costo</li>
-                <li><i class="ri-check-double-line"></i> Proyectos con habilitación urbana</li>
-                <li><i class="ri-check-double-line"></i> Financiamiento accesible y flexible</li>
+                <li><i class="ri-check-double-line" aria-hidden="true"></i> Independización y documentación saneada en Registros Públicos</li>
+                <li><i class="ri-check-double-line" aria-hidden="true"></i> Proyectos en estreno, en construcción y preventa en planos</li>
+                <li><i class="ri-check-double-line" aria-hidden="true"></i> Ubicaciones cercanas a universidades, clínicas y centros comerciales</li>
+                <li><i class="ri-check-double-line" aria-hidden="true"></i> Financiamiento directo flexible y asesoría para crédito hipotecario</li>
             </ul>
         </div>
         <div class="about-img reveal-right">
-            <img src="img/sections/bg_about_new.webp" alt="Equipo Oportunidades Inmobiliarias Perú" loading="lazy">
+            <img src="/img/sections/nosotros-equipo-departamentos-arequipa.webp"
+                 alt="Equipo de Oportunidades Inmobiliarias Perú revisando planos y maqueta de edificio de departamentos en Arequipa con vista al volcán Misti"
+                 width="1040" height="780" loading="lazy">
         </div>
     </div>
     <div class="pd2"></div>
@@ -45,20 +118,20 @@ include_once 'header.php';
     <div class="pd2"></div>
     <div class="stats-grid l-container">
         <div class="stat-big reveal-card">
-            <span class="stat-big__num"><span class="count-up" data-target="5">0</span>+</span>
-            <span class="stat-big__label">Años de experiencia</span>
+            <span class="stat-big__num"><span class="count-up" data-target="5" data-suffix="+">5+</span></span>
+            <span class="stat-big__label">Años en el mercado arequipeño</span>
         </div>
         <div class="stat-big reveal-card">
-            <span class="stat-big__num"><span class="count-up" data-target="1500">0</span>+</span>
-            <span class="stat-big__label">Familias satisfechas</span>
+            <span class="stat-big__num"><span class="count-up" data-target="214" data-suffix="+">214+</span></span>
+            <span class="stat-big__label">Familias propietarias</span>
         </div>
         <div class="stat-big reveal-card">
-            <span class="stat-big__num"><span class="count-up" data-target="950">0</span>+</span>
-            <span class="stat-big__label">Propiedades vendidas</span>
+            <span class="stat-big__num"><span class="count-up" data-target="9" data-suffix="">9</span></span>
+            <span class="stat-big__label">Proyectos de departamentos</span>
         </div>
         <div class="stat-big reveal-card">
-            <span class="stat-big__num"><span class="count-up" data-target="12">0</span></span>
-            <span class="stat-big__label">Proyectos activos</span>
+            <span class="stat-big__num"><span class="count-up" data-target="100" data-suffix="%">100%</span></span>
+            <span class="stat-big__label">Respaldo registral</span>
         </div>
     </div>
     <div class="pd2"></div>
@@ -69,25 +142,25 @@ include_once 'header.php';
     <div class="pd2"></div>
     <div class="l-container">
         <p class="section-eyebrow">Nuestro equipo</p>
-        <h2 class="main_title main-color">Asesores especializados</h2>
-        <p class="section-intro">Cada miembro de nuestro equipo conoce Arequipa y sus mejores oportunidades a fondo.</p>
+        <h2 class="main_title main-color">Asesores especializados en vivienda e inversión</h2>
+        <p class="section-intro">Te acompañamos desde la elección del distrito hasta la entrega de llaves de tu departamento.</p>
     </div>
     <div class="pd1"></div>
     <div class="team-grid l-container">
         <div class="team-card reveal-card">
-            <img src="/img/team_carlos.webp" alt="Carlos Mamani - Asesor comercial" loading="lazy">
+            <img src="/img/team_carlos.webp" alt="Carlos Mamani, especialista en departamentos de estreno en Arequipa" width="80" height="80" loading="lazy">
             <h3>Carlos Mamani</h3>
-            <p>Asesor Comercial Senior</p>
+            <p>Especialista en Departamentos de Estreno</p>
         </div>
         <div class="team-card reveal-card">
-            <img src="/img/team_ana.webp" alt="Ana Quispe - Asesora comercial" loading="lazy">
+            <img src="/img/team_ana.webp" alt="Ana Quispe, asesora de preventa e inversión inmobiliaria en Arequipa" width="80" height="80" loading="lazy">
             <h3>Ana Quispe</h3>
-            <p>Asesora de Inversiones</p>
+            <p>Asesora de Preventa e Inversión</p>
         </div>
         <div class="team-card reveal-card">
-            <img src="/img/team_juan.webp" alt="Juan Paredes - Asesor financiero" loading="lazy">
+            <img src="/img/team_juan.webp" alt="Juan Paredes, asesor de financiamiento hipotecario en Arequipa" width="80" height="80" loading="lazy">
             <h3>Juan Paredes</h3>
-            <p>Asesor Financiero</p>
+            <p>Asesor de Financiamiento Hipotecario</p>
         </div>
     </div>
     <div class="pd2"></div>
@@ -97,12 +170,12 @@ include_once 'header.php';
 <section class="bg-action">
     <div class="pd2"></div>
     <div class="m-container center content-action">
-        <h3 class="main_subtitle-center white">¿Listo para encontrar tu hogar ideal?</h3>
-        <h2 class="main_title white">Habla hoy con uno de nuestros asesores</h2>
+        <h3 class="main_subtitle-center white">¿Buscas vivir o invertir en Arequipa?</h3>
+        <h2 class="main_title white">Recibe asesoría gratuita sobre nuestros departamentos</h2>
         <div class="pd1"></div>
-        <a href="https://api.whatsapp.com/send?phone=51999653412&text=Hola,%20quiero%20asesoría%20gratuita"
+        <a href="https://api.whatsapp.com/send?phone=51999653412&text=Hola%2C%20quisiera%20asesor%C3%ADa%20sobre%20sus%20proyectos%20de%20departamentos%20en%20Arequipa"
            target="_blank" rel="noopener" class="button primary">
-            Asesoría gratuita <i class="flaticon-whatsapp"></i>
+            Conversar con un asesor por WhatsApp <i class="flaticon-whatsapp" aria-hidden="true"></i>
         </a>
     </div>
     <div class="pd2"></div>
@@ -110,28 +183,45 @@ include_once 'header.php';
 
 <?php include_once 'footer.php'; ?>
 <script>
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const revealEls = document.querySelectorAll('.reveal-up, .reveal-right, .reveal-card');
-const observer  = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('is-visible'); observer.unobserve(e.target); }
-    });
-}, { threshold: 0.12 });
-revealEls.forEach(el => observer.observe(el));
+
+if (prefersReducedMotion) {
+    revealEls.forEach(el => el.classList.add('is-visible'));
+} else {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                e.target.classList.add('is-visible');
+                observer.unobserve(e.target);
+            }
+        });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => observer.observe(el));
+}
 
 const countEls = document.querySelectorAll('.count-up');
-const countObs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-        if (!e.isIntersecting) return;
-        const target = +e.target.dataset.target;
-        gsap.to(e.target, {
-            innerText: target, duration: 1.8, ease: 'power2.out',
-            snap: { innerText: 1 },
-            onUpdate() { e.target.innerText = Math.round(+e.target.innerText).toLocaleString(); }
+if (!prefersReducedMotion && 'IntersectionObserver' in window) {
+    const countObs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (!e.isIntersecting) return;
+            const node = e.target;
+            const target = +node.dataset.target;
+            const suffix = node.dataset.suffix || '';
+            const duration = 1600;
+            const start = performance.now();
+            function step(now) {
+                const p = Math.min(1, (now - start) / duration);
+                const eased = 1 - Math.pow(1 - p, 3);
+                node.textContent = Math.round(target * eased).toLocaleString() + suffix;
+                if (p < 1) requestAnimationFrame(step);
+            }
+            requestAnimationFrame(step);
+            countObs.unobserve(node);
         });
-        countObs.unobserve(e.target);
-    });
-}, { threshold: 0.5 });
-countEls.forEach(el => countObs.observe(el));
+    }, { threshold: 0.5 });
+    countEls.forEach(el => countObs.observe(el));
+}
 </script>
 </body>
 </html>

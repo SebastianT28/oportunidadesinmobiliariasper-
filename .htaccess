@@ -49,7 +49,8 @@ DirectoryIndex index.php index.html
         Header set Cache-Control "no-cache, no-store, must-revalidate"
         Header set Pragma "no-cache"
     </FilesMatch>
-    # Seguridad adicional
+    # Seguridad y compresión consistente en proxies/CDN
+    Header append Vary "Accept-Encoding"
     Header set X-Content-Type-Options "nosniff"
     Header set X-Frame-Options "SAMEORIGIN"
     Header set Referrer-Policy "strict-origin-when-cross-origin"
@@ -75,6 +76,8 @@ RewriteRule ^alquiler/?$                alquiler.php [L]
 RewriteRule ^nosotros/?$                nosotros.php [L]
 
 # ── Novedades / Blog ─────────────────────────────────────────
+RewriteRule ^blog/([a-z0-9-]+)/?$       /novedades/$1 [L,R=301]
+RewriteRule ^blog/?$                    /novedades [L,R=301]
 RewriteRule ^novedades/([a-z0-9-]+)/?$  novedades/articulo.php?slug=$1 [QSA,L]
 RewriteRule ^novedades/?$               novedades.php [L]
 

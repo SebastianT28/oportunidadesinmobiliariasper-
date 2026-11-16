@@ -12,10 +12,11 @@ if (!$prop || $prop['categoria'] !== 'alquiler') {
 
 $related = relatedProperties('alquiler', $slug);
 
-$page        = $prop['nombre'] . ' — Alquiler en ' . $prop['ubicacion'];
-$description = $prop['descripcion'];
-$canonical   = 'https://oportunidadesinmobiliariasperu.com/alquiler/' . $prop['slug'];
-$og_image    = 'https://oportunidadesinmobiliariasperu.com/' . $prop['imagen_og'];
+$page              = $prop['nombre'] . ' — Alquiler en ' . $prop['ubicacion'];
+$description       = $prop['descripcion'];
+$canonical         = 'https://oportunidadesinmobiliariasperu.com/alquiler/' . $prop['slug'];
+$og_image          = 'https://oportunidadesinmobiliariasperu.com/' . $prop['imagen_og'];
+$preload_lcp_image = '/' . ltrim($prop['imagenes'][0], '/');
 $base = '../';
 include_once '../header.php';
 ?>
@@ -32,7 +33,7 @@ include_once '../header.php';
 
 <section class="detail-gallery">
     <div class="gallery-main" onclick="openLightbox(galleryState.current)">
-        <img src="/<?= $prop['imagenes'][0] ?>" alt="<?= htmlspecialchars($prop['nombre']) ?>" id="galleryMain" loading="eager">
+        <img src="/<?= $prop['imagenes'][0] ?>" alt="<?= htmlspecialchars($prop['nombre']) ?>" id="galleryMain" width="1200" height="675" loading="eager" fetchpriority="high" decoding="sync">
         <span class="gallery-counter" id="galleryCounter">1 / <?= count($prop['imagenes']) ?></span>
         <button class="gallery-expand" onclick="event.stopPropagation(); openLightbox(galleryState.current)">
             <i class="ri-fullscreen-line"></i> Ver galería completa
@@ -49,7 +50,7 @@ include_once '../header.php';
         <div class="gallery-thumb <?= $i === 0 ? 'active' : '' ?>"
              data-src="/<?= htmlspecialchars($img) ?>"
              onclick="galleryGoTo(<?= $i ?>)">
-            <img src="/<?= $img ?>" alt="Foto <?= $i+1 ?>" loading="lazy">
+            <img src="/<?= $img ?>" alt="Foto <?= $i+1 ?>" width="120" height="80" loading="lazy" decoding="async">
         </div>
         <?php endforeach; ?>
     </div>
@@ -60,7 +61,7 @@ include_once '../header.php';
     <button class="lightbox-close" id="lightboxClose" aria-label="Cerrar"><i class="ri-close-line"></i></button>
     <button class="lightbox-arrow lightbox-arrow--prev" id="lbPrev" aria-label="Anterior"><i class="ri-arrow-left-s-line"></i></button>
     <div class="lightbox-img-wrap">
-        <img src="" alt="" class="lightbox-img" id="lightboxImg">
+        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" class="lightbox-img" id="lightboxImg">
     </div>
     <button class="lightbox-arrow lightbox-arrow--next" id="lbNext" aria-label="Siguiente"><i class="ri-arrow-right-s-line"></i></button>
     <div class="lightbox-footer">
@@ -68,7 +69,7 @@ include_once '../header.php';
         <div class="lightbox-thumbs" id="lightboxThumbs">
             <?php foreach ($prop['imagenes'] as $i => $img): ?>
             <div class="lightbox-thumb <?= $i === 0 ? 'active' : '' ?>" onclick="lbGoTo(<?= $i ?>)">
-                <img src="/<?= $img ?>" alt="Foto <?= $i+1 ?>" loading="lazy">
+                <img src="/<?= $img ?>" alt="Foto <?= $i+1 ?>" width="80" height="60" loading="lazy" decoding="async">
             </div>
             <?php endforeach; ?>
         </div>

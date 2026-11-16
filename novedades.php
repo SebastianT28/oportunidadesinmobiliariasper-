@@ -1,9 +1,10 @@
 <?php
 require_once __DIR__ . '/data/articulos.php';
 
-$page        = 'Novedades y Guías Inmobiliarias | Oportunidades Inmobiliarias Perú';
-$description = 'Artículos, guías de compra y consejos sobre el sector inmobiliario en Arequipa. Aprende a elegir terrenos, casas y departamentos con seguridad.';
-$canonical   = 'https://oportunidadesinmobiliariasperu.com/novedades';
+$page              = 'Novedades y Guías Inmobiliarias';
+$meta_title_exact  = 'Novedades y Guías sobre Departamentos en Arequipa | Oportunidades Inmobiliarias Perú';
+$description       = 'Artículos, análisis de inversión y guías de compra sobre departamentos en Arequipa: preventa, estreno, plusvalía y rentabilidad.';
+$canonical         = 'https://oportunidadesinmobiliariasperu.com/novedades';
 
 $featured = null;
 foreach ($articulos as $art) {
@@ -15,6 +16,7 @@ foreach ($articulos as $art) {
 if (!$featured && !empty($articulos)) {
     $featured = $articulos[0];
 }
+$preload_lcp_image = $featured ? ('/' . ltrim($featured['imagen'], '/')) : '/img/sections/bg_about_alt.webp';
 
 include_once 'header.php';
 ?>
@@ -62,7 +64,7 @@ include_once 'header.php';
         <div class="featured-article-card">
             <div class="featured-article__image-wrap">
                 <a href="/novedades/<?php echo htmlspecialchars($featured['slug']); ?>">
-                    <img src="/<?php echo htmlspecialchars($featured['imagen']); ?>" alt="<?php echo htmlspecialchars($featured['titulo']); ?>" loading="lazy">
+                    <img src="/<?php echo htmlspecialchars($featured['imagen']); ?>" alt="<?php echo htmlspecialchars($featured['imagen_alt'] ?? $featured['titulo']); ?>" width="1200" height="675" loading="eager" fetchpriority="high" decoding="sync">
                 </a>
                 <span class="article-badge-featured"><i class="ri-star-fill"></i> Destacado</span>
             </div>
@@ -111,7 +113,7 @@ include_once 'header.php';
             <article class="article-card" data-category="<?php echo htmlspecialchars($art['categoria_slug']); ?>">
                 <div class="article-card__thumb">
                     <a href="/novedades/<?php echo htmlspecialchars($art['slug']); ?>" tabindex="-1" aria-hidden="true">
-                        <img src="/<?php echo htmlspecialchars($art['imagen']); ?>" alt="<?php echo htmlspecialchars($art['titulo']); ?>" loading="lazy">
+                        <img src="/<?php echo htmlspecialchars($art['imagen']); ?>" alt="<?php echo htmlspecialchars($art['imagen_alt'] ?? $art['titulo']); ?>" width="600" height="338" loading="lazy" decoding="async">
                     </a>
                     <span class="category-pill thumb-pill"><?php echo htmlspecialchars($art['categoria']); ?></span>
                 </div>
@@ -127,7 +129,7 @@ include_once 'header.php';
                     </h3>
                     <p class="article-card__excerpt"><?php echo htmlspecialchars($art['resumen']); ?></p>
                     <div class="article-card__footer">
-                        <span class="author-tag"><i class="ri-user-smile-line"></i> <?php echo htmlspecialchars($art['autor']); ?></span>
+                        <span class="author-tag"><i class="ri-user-smile-line"></i> <?php echo htmlspecialchars($art['autor_corto'] ?? $art['autor']); ?></span>
                         <a href="/novedades/<?php echo htmlspecialchars($art['slug']); ?>" class="read-link">
                             Leer más <i class="ri-arrow-right-line"></i>
                         </a>

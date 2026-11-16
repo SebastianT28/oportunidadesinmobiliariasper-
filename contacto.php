@@ -1,8 +1,10 @@
 <?php
-$page        = 'Contacto y Asesoría Inmobiliaria en Arequipa | Oportunidades Inmobiliarias Perú';
-$description = 'Ponte en contacto con nuestros asesores inmobiliarios en Arequipa. Cotiza terrenos, casas, departamentos o publica tu propiedad. Escríbenos por WhatsApp o déjanos un mensaje.';
-$canonical   = 'https://oportunidadesinmobiliariasperu.com/contacto';
-$og_image    = 'https://oportunidadesinmobiliariasperu.com/img/sections/bg_contact.webp';
+$page              = 'Contacto y Asesoría Inmobiliaria en Arequipa';
+$meta_title_exact  = 'Contacto y Asesoría Inmobiliaria en Arequipa | Oportunidades Inmobiliarias Perú';
+$description       = 'Ponte en contacto con nuestros asesores inmobiliarios en Arequipa. Cotiza departamentos de estreno, construcción o preventa. Escríbenos por WhatsApp.';
+$canonical         = 'https://oportunidadesinmobiliariasperu.com/contacto';
+$og_image          = 'https://oportunidadesinmobiliariasperu.com/img/sections/bg_contact.webp';
+$preload_lcp_image = '/img/sections/bg_contact.webp';
 
 // Procesamiento de formulario de contacto
 $form_error = '';

@@ -1,8 +1,10 @@
 <?php
-$page        = '¡Solicitud Recibida! — Gracias por Contactarnos | Oportunidades Inmobiliarias Perú';
-$description = 'Hemos recibido tus datos con éxito. En breve un asesor especializado se pondrá en contacto contigo para brindarte asesoría inmobiliaria.';
-$canonical   = 'https://oportunidadesinmobiliariasperu.com/gracias';
-$nombre_contacto = trim(filter_input(INPUT_GET, 'nombre', FILTER_SANITIZE_SPECIAL_CHARS) ?? '');
+$page             = '¡Solicitud Recibida! — Gracias por Contactarnos';
+$meta_title_exact = '¡Solicitud Recibida! — Gracias por Contactarnos | Oportunidades Inmobiliarias Perú';
+$description      = 'Hemos recibido tus datos con éxito. En breve un asesor especializado se pondrá en contacto contigo para brindarte asesoría inmobiliaria.';
+$canonical        = 'https://oportunidadesinmobiliariasperu.com/gracias';
+$eager_analytics  = true;
+$nombre_contacto  = trim(filter_input(INPUT_GET, 'nombre', FILTER_SANITIZE_SPECIAL_CHARS) ?? '');
 
 include_once 'header.php';
 ?>

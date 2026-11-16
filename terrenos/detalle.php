@@ -12,10 +12,11 @@ if (!$prop || $prop['categoria'] !== 'terrenos') {
 
 $related = relatedProperties('terrenos', $slug);
 
-$page        = $prop['nombre'] . ' — Terreno en ' . $prop['ubicacion'];
-$description = $prop['descripcion'];
-$canonical   = 'https://oportunidadesinmobiliariasperu.com/terrenos/' . $prop['slug'];
-$og_image    = 'https://oportunidadesinmobiliariasperu.com/' . $prop['imagen_og'];
+$page              = $prop['nombre'] . ' — Terreno en ' . $prop['ubicacion'];
+$description       = $prop['descripcion'];
+$canonical         = 'https://oportunidadesinmobiliariasperu.com/terrenos/' . $prop['slug'];
+$og_image          = 'https://oportunidadesinmobiliariasperu.com/' . $prop['imagen_og'];
+$preload_lcp_image = '/' . ltrim($prop['imagenes'][0], '/');
 
 $base = '../';
 include_once '../header.php';
@@ -97,7 +98,8 @@ $has_tour = !empty($prop['tour_virtual']['activo']) && !empty($prop['tour_virtua
         <img src="/<?= $prop['imagenes'][0] ?>" 
              alt="<?= htmlspecialchars($prop['nombre']) ?>" 
              id="galleryMain" 
-             loading="eager"
+             width="1200" height="675"
+             loading="eager" fetchpriority="high" decoding="sync"
              onclick="openLightbox(galleryState.currentPhoto)"
              style="<?= ($has_360 || $has_tour) ? 'display: none;' : '' ?>">
 
@@ -128,7 +130,7 @@ $has_tour = !empty($prop['tour_virtual']['activo']) && !empty($prop['tour_virtua
         <div class="gallery-thumb gallery-thumb--360 active" 
              data-type="360"
              onclick="galleryGoTo(0)">
-            <img src="/<?= $prop['imagenes'][0] ?>" alt="Vista 360°" loading="lazy">
+            <img src="/<?= $prop['imagenes'][0] ?>" alt="Vista 360°" width="120" height="80" loading="lazy" decoding="async">
             <span class="thumb-360-badge">
                 <i class="ri-compass-3-line"></i>
                 <span>360°</span>
@@ -140,7 +142,7 @@ $has_tour = !empty($prop['tour_virtual']['activo']) && !empty($prop['tour_virtua
         <div class="gallery-thumb gallery-thumb--tour <?= (!$has_360 ? 'active' : '') ?>" 
              data-type="tour"
              onclick="galleryGoTo(<?= $has_360 ? 1 : 0 ?>)">
-            <img src="/<?= $prop['imagenes'][0] ?>" alt="Tour 360" loading="lazy">
+            <img src="/<?= $prop['imagenes'][0] ?>" alt="Tour 360" width="120" height="80" loading="lazy" decoding="async">
             <span class="thumb-360-badge thumb-tour-badge">
                 <i class="ri-walk-line"></i>
                 <span>Tour 360</span>
@@ -155,7 +157,7 @@ $has_tour = !empty($prop['tour_virtual']['activo']) && !empty($prop['tour_virtua
         <div class="gallery-thumb <?= ($thumbOffset === 0 && $i === 0) ? 'active' : '' ?>" 
              data-src="/<?= htmlspecialchars($img) ?>"
              onclick="galleryGoTo(<?= $i + $thumbOffset ?>)">
-            <img src="/<?= $img ?>" alt="Foto <?= $i+1 ?> de <?= htmlspecialchars($prop['nombre']) ?>" loading="lazy">
+            <img src="/<?= $img ?>" alt="Foto <?= $i+1 ?> de <?= htmlspecialchars($prop['nombre']) ?>" width="120" height="80" loading="lazy" decoding="async">
         </div>
         <?php endforeach; ?>
     </div>
@@ -166,7 +168,7 @@ $has_tour = !empty($prop['tour_virtual']['activo']) && !empty($prop['tour_virtua
     <button class="lightbox-close" id="lightboxClose" aria-label="Cerrar"><i class="ri-close-line"></i></button>
     <button class="lightbox-arrow lightbox-arrow--prev" id="lbPrev" aria-label="Anterior"><i class="ri-arrow-left-s-line"></i></button>
     <div class="lightbox-img-wrap">
-        <img src="" alt="" class="lightbox-img" id="lightboxImg">
+        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" class="lightbox-img" id="lightboxImg">
     </div>
     <button class="lightbox-arrow lightbox-arrow--next" id="lbNext" aria-label="Siguiente"><i class="ri-arrow-right-s-line"></i></button>
     <div class="lightbox-footer">
@@ -174,7 +176,7 @@ $has_tour = !empty($prop['tour_virtual']['activo']) && !empty($prop['tour_virtua
         <div class="lightbox-thumbs" id="lightboxThumbs">
             <?php foreach ($prop['imagenes'] as $i => $img): ?>
             <div class="lightbox-thumb <?= $i === 0 ? 'active' : '' ?>" onclick="lbGoTo(<?= $i ?>)">
-                <img src="/<?= $img ?>" alt="Foto <?= $i+1 ?>" loading="lazy">
+                <img src="/<?= $img ?>" alt="Foto <?= $i+1 ?>" width="80" height="60" loading="lazy" decoding="async">
             </div>
             <?php endforeach; ?>
         </div>

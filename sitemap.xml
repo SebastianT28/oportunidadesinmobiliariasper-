@@ -12,7 +12,7 @@
     <!-- Nosotros -->
     <url>
         <loc>https://oportunidadesinmobiliariasperu.com/nosotros</loc>
-        <lastmod>2026-10-05</lastmod>
+        <lastmod>2026-11-15</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -118,40 +118,46 @@
         <changefreq>weekly</changefreq>
         <priority>0.85</priority>
     </url>
+    <url>
+        <loc>https://oportunidadesinmobiliariasperu.com/departamentos/edificio-alba</loc>
+        <lastmod>2026-11-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://oportunidadesinmobiliariasperu.com/departamentos/edificio-zentra</loc>
+        <lastmod>2026-11-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
 
     <!-- Novedades / Blog -->
     <url>
         <loc>https://oportunidadesinmobiliariasperu.com/novedades</loc>
-        <lastmod>2026-10-05</lastmod>
+        <lastmod>2026-11-15</lastmod>
         <changefreq>weekly</changefreq>
+        <priority>0.85</priority>
+    </url>
+    <url>
+        <loc>https://oportunidadesinmobiliariasperu.com/novedades/analisis-inversion-departamentos-bustamante-y-rivero-arequipa</loc>
+        <lastmod>2026-11-15</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://oportunidadesinmobiliariasperu.com/novedades/rentabilidad-departamentos-cercado-arequipa-alquiler-airbnb</loc>
+        <lastmod>2026-11-15</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://oportunidadesinmobiliariasperu.com/novedades/proyeccion-economica-2027-arequipa-inversion-departamentos</loc>
+        <lastmod>2026-11-15</lastmod>
+        <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://oportunidadesinmobiliariasperu.com/novedades/protege-tu-hogar-lluvias</loc>
-        <lastmod>2026-10-05</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://oportunidadesinmobiliariasperu.com/novedades/mejores-zonas-aire-puro-arequipa</loc>
-        <lastmod>2026-10-05</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://oportunidadesinmobiliariasperu.com/novedades/donde-comprar-futuro-hogar</loc>
-        <lastmod>2026-10-05</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://oportunidadesinmobiliariasperu.com/novedades/invertir-bienes-raices-2026</loc>
-        <lastmod>2026-10-05</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://oportunidadesinmobiliariasperu.com/novedades/habilitacion-urbana-titulo-propiedad</loc>
         <lastmod>2026-10-05</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>

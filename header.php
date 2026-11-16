@@ -1,19 +1,15 @@
 <!DOCTYPE html>
 <html lang="es-PE">
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0G2D1J86CG"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-0G2D1J86CG');
-    </script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title><?php echo htmlspecialchars($page ?? 'Oportunidades Inmobiliarias Perú'); ?> &mdash; Oportunidades Inmobiliarias Perú</title>
+    <?php
+    $computed_doc_title = !empty($meta_title_exact)
+        ? $meta_title_exact
+        : (($page ?? 'Oportunidades Inmobiliarias Perú') . ' — Oportunidades Inmobiliarias Perú');
+    ?>
+    <title><?php echo htmlspecialchars($computed_doc_title); ?></title>
 
     <?php if (!empty($description)): ?>
     <meta name="description" content="<?php echo htmlspecialchars($description); ?>">
@@ -32,7 +28,7 @@
     <meta property="og:type" content="website">
     <meta property="og:locale" content="es_PE">
     <meta property="og:site_name" content="Oportunidades Inmobiliarias Perú">
-    <meta property="og:title" content="<?php echo htmlspecialchars($page ?? 'Inicio'); ?> &mdash; Oportunidades Inmobiliarias Perú">
+    <meta property="og:title" content="<?php echo htmlspecialchars($computed_doc_title); ?>">
     <?php if (!empty($description)): ?>
     <meta property="og:description" content="<?php echo htmlspecialchars($description); ?>">
     <?php endif; ?>
@@ -129,51 +125,84 @@
     </script>
     <?php endif; ?>
 
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="/img/favicon.png" type="image/png">
+    <!-- Favicon circular centrado (192x192 estándar Google Search y pestañas retina) -->
+    <link rel="icon" type="image/png" sizes="192x192" href="/img/favicon.png?v=2">
+    <link rel="shortcut icon" href="/img/favicon.png?v=2" type="image/png">
+    <link rel="apple-touch-icon" href="/img/favicon.png?v=2">
 
-    <!-- DNS Prefetch & Preconnect críticos -->
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
-    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <!-- DNS Prefetch & Preconnect críticos (máximo 2 orígenes esenciales para FCP óptimo) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <?php if (!empty($use_swiper) || !empty($use_gsap)): ?>
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    <?php endif; ?>
+
+    <!-- Preload dinámico de la imagen LCP real de cada vista -->
+    <?php if (!empty($preload_lcp_image)): ?>
+    <link rel="preload" as="image" href="<?php echo htmlspecialchars($preload_lcp_image); ?>"<?php if (!empty($preload_lcp_srcset)): ?> imagesrcset="<?php echo htmlspecialchars($preload_lcp_srcset); ?>" imagesizes="<?php echo htmlspecialchars($preload_lcp_sizes ?? '100vw'); ?>"<?php endif; ?> fetchpriority="high">
+    <?php endif; ?>
 
     <!-- Fuente principal: preload + font-display swap (evita FOIT) -->
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;600;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;600;800&display=swap"></noscript>
 
-    <!-- CSS propio: crítico, carga síncrona con versión para cache busting -->
-    <link rel="stylesheet" type="text/css" href="/css/styles2k2k2.css?v=0.2.7">
+    <!-- CSS propio minificado: crítico -->
+    <link rel="stylesheet" type="text/css" href="/css/styles2k2k2.min.css?v=0.4.1">
 
-    <!-- CSS externos no críticos: carga diferida para no bloquear render -->
-    <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"></noscript>
+    <!-- RemixIcon subset local con font-display: swap (3.5 KB, carga no bloqueante) -->
+    <link rel="preload" as="style" href="/css/remixicon.min.css?v=1.0.0" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/css/remixicon.min.css?v=1.0.0"></noscript>
 
+    <?php if (!empty($use_swiper)): ?>
     <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"></noscript>
+    <?php endif; ?>
 
+    <?php if (!empty($use_sweetalert)): ?>
     <link rel="stylesheet" type="text/css" href="/css/sweetalert.css">
+    <?php endif; ?>
 
     <?php if (!empty($prop['has_panorama']) || !empty($prop['tour_virtual']['activo'])): ?>
     <!-- Pannellum 360° viewer CSS: carga diferida no bloqueante para FCP óptimo -->
     <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css"></noscript>
-    <!-- Estilos personalizados del visor 360° -->
-    <link rel="stylesheet" type="text/css" href="/css/360.css?v=1.3.1">
+    <!-- Estilos personalizados minificados del visor 360° -->
+    <link rel="stylesheet" type="text/css" href="/css/360.min.css?v=1.3.2">
     <?php endif; ?>
 
-    <!-- Preload logo (imagen crítica LCP móvil) -->
-    <link rel="preload" as="image" href="/img/logo.webp">
+    <!-- Google Analytics (G-0G2D1J86CG) + Google Tag Manager (GTM-TJ48PG23): dataLayer inmediato + red diferida post-interacción/idle -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){window.dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-0G2D1J86CG');
+      window.dataLayer.push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
+      (function() {
+        var analyticsLoaded = false;
+        function loadGoogleTags() {
+          if (analyticsLoaded) return;
+          analyticsLoaded = true;
+          var ga = document.createElement('script');
+          ga.async = true;
+          ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-0G2D1J86CG';
+          document.head.appendChild(ga);
 
-    <!-- Google Tag Manager (async, no bloquea render) -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-TJ48PG23');</script>
+          var gtm = document.createElement('script');
+          gtm.async = true;
+          gtm.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-TJ48PG23';
+          document.head.appendChild(gtm);
+        }
+        ['pointerdown', 'keydown', 'touchstart', 'scroll'].forEach(function(ev) {
+          window.addEventListener(ev, loadGoogleTags, { passive: true, once: true });
+        });
+        <?php if (!empty($eager_analytics)): ?>
+        window.addEventListener('DOMContentLoaded', function() { setTimeout(loadGoogleTags, 150); });
+        <?php else: ?>
+        window.addEventListener('load', function() { setTimeout(loadGoogleTags, 3500); });
+        <?php endif; ?>
+      })();
+    </script>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
@@ -188,8 +217,8 @@
 
                     <div class="contact-widget">
                         <!--Icono-->
-                        <a href="tel:999653412" target="_blank">
-                            <div class="contact-widget__icon flaticon-phone-call icon-header"></div>
+                        <a href="tel:999653412" aria-label="Llamar al 999 653 412">
+                            <div class="contact-widget__icon flaticon-phone-call icon-header" aria-hidden="true"></div>
                         </a>
 
                         <!--Datos-->
@@ -201,8 +230,8 @@
 
                     <div class="contact-widget">
                         <!--Icono-->
-                        <a href="mailto:info@oportunidadesinmobiliariasperu.com" target="_blank">
-                            <div class="contact-widget__icon flaticon-email icon-header"></div>
+                        <a href="mailto:info@oportunidadesinmobiliariasperu.com" aria-label="Escribir al correo info@oportunidadesinmobiliariasperu.com">
+                            <div class="contact-widget__icon flaticon-email icon-header" aria-hidden="true"></div>
                         </a>
 
                         <!--Datos-->
@@ -215,8 +244,8 @@
                 <div class="top-bar__right">
 
                     <div class="widget-top">
-                        <a href="https://wa.me/51999653412?text=Hola%20Oportunidades%20Inmobiliarias%20Per%C3%BA,%20deseo%20una%20consulta%20gratuita." target="_blank" rel="noopener" title="¡Obtén tu consulta gratuita por WhatsApp!">
-                            <i class="flaticon-phone-call"></i> <span class="no-mobile">Consulta gratuita</span>
+                        <a href="https://wa.me/51999653412?text=Hola%20Oportunidades%20Inmobiliarias%20Per%C3%BA,%20deseo%20una%20consulta%20gratuita." target="_blank" rel="noopener" aria-label="Consulta gratuita por WhatsApp" title="¡Obtén tu consulta gratuita por WhatsApp!">
+                            <i class="flaticon-phone-call" aria-hidden="true"></i> <span class="no-mobile">Consulta gratuita</span>
                         </a>
                     </div>
 
@@ -227,168 +256,22 @@
 
 
     <header class="main-header">
-            <nav class="nav l-container">
+            <nav class="nav l-container" aria-label="Navegación principal">
                 <div class="nav__data">
                     <a href="/" class="nav__logo">
-                        <img src="/img/logo.webp" alt="Oportunidades Inmobiliarias Perú" class="logo" width="211" height="48" fetchpriority="high" loading="eager">
+                        <img src="/img/logo.webp" alt="Oportunidades Inmobiliarias Perú" class="logo" width="211" height="48" loading="eager" decoding="async">
                     </a>
     
-                    <div class="nav__toggle" id="nav-toggle">
-                        <i class="ri-menu-line nav__toggle-menu"></i>
-                        <i class="ri-close-line nav__toggle-close"></i>
-                    </div>
+                    <button type="button" class="nav__toggle" id="nav-toggle" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="nav-menu">
+                        <i class="ri-menu-line nav__toggle-menu" aria-hidden="true"></i>
+                        <i class="ri-close-line nav__toggle-close" aria-hidden="true"></i>
+                    </button>
                 </div>
 
                 <!--=============== NAV MENU ===============-->
                 <div class="nav__menu" id="nav-menu">
                     <ul class="nav__list">
-                        <!--=============== DROPDOWN 1 ===============-->
-                        <li class="dropdown__item">                      
-                            <div class="nav__link dropdown__button">
-                                Terrenos <i class="ri-arrow-down-s-line dropdown__arrow"></i>
-                            </div>
-
-                            <div class="dropdown__container" style="/*opacity: 1;pointer-events: initial; cursor: initial;*/">
-                                <div class="dropdown__content l-container">
-                                    <div class="dropdown__group">
-                                        <div class="dropdown__icon">
-                                            <i class="flaticon-star"></i>
-                                        </div>
-    
-                                        <span class="dropdown__title">Lo más nuevo</span>
-    
-                                        <ul class="dropdown__list">
-                                            <li>
-                                                <a href="/terrenos/villa-victoria" class="dropdown__link">Villa Victoria — Chiguata</a>
-                                            </li>
-                                            <li>
-                                                <a href="/terrenos/valle-sol" class="dropdown__link">Valle Sol — La Joya</a>
-                                            </li>
-                                            <li>
-                                                <a href="/terrenos/portales-la-joya" class="dropdown__link">Portales La Joya</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="dropdown__group">
-                                        <div class="dropdown__icon">
-                                            <i class="flaticon-land-1"></i>
-                                        </div>
-
-                                        <span class="dropdown__title">Nuestros terrenos</span>
-
-                                        <ul class="dropdown__list">
-                                            <li>
-                                                <a href="/terrenos/villa-victoria" class="dropdown__link">Villa Victoria</a>
-                                            </li>
-                                            <li>
-                                                <a href="/terrenos/valle-sol" class="dropdown__link">Valle Sol</a>
-                                            </li>
-                                            <li>
-                                                <a href="/terrenos/portales-la-joya" class="dropdown__link">Portales La Joya</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-    
-                                    <div class="dropdown__group">
-                                        <div class="dropdown__icon">
-                                            <i class="ri-search-eye-line"></i>
-                                        </div>
-                                        <span class="dropdown__title">¿Te gustaría saber más?</span>
-                                        <p style="margin:0;padding:0">Explora todos nuestros terrenos disponibles en Arequipa.</p>
-                                        <a href="/terrenos" class="button primary center" style="margin:0;">Ver todos los terrenos</a>
-                                    </div>
-
-
-
-
-                                </div>
-                            </div>
-                        </li>
-
-                        <!--=============== DROPDOWN 1 ===============-->
-                        <li class="dropdown__item">                      
-                            <div class="nav__link dropdown__button">
-                                Casas <i class="ri-arrow-down-s-line dropdown__arrow"></i>
-                            </div>
-
-                            <div class="dropdown__container">
-                                <div class="dropdown__content l-container">
-                                    <div class="dropdown__group">
-                                        <div class="dropdown__icon">
-                                            <i class="ri-flashlight-line"></i>
-                                        </div>
-    
-                                        <span class="dropdown__title">Lo más visto</span>
-    
-                                        <ul class="dropdown__list">
-                                            <li>
-                                                <a href="/casas/las-lomas" class="dropdown__link">Casa en Las Lomas I</a>
-                                            </li>
-                                            <li>
-                                                <a href="/casas/el-olivar" class="dropdown__link">Praderas El Olivar II</a>
-                                            </li>
-                                            <li>
-                                                <a href="/casas/casonas-blancas" class="dropdown__link">Casonas Blancas</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-    
-                                    <div class="dropdown__group">
-                                        <div class="dropdown__icon">
-                                            <i class="flaticon-house"></i>
-                                        </div>
-    
-                                        <span class="dropdown__title">Casas Arequipa</span>
-    
-                                        <ul class="dropdown__list">
-                                            <li>
-                                                <a href="/casas/las-lomas" class="dropdown__link">Las Lomas I</a>
-                                            </li>
-                                            <li>
-                                                <a href="/casas/el-olivar" class="dropdown__link">El Olivar II</a>
-                                            </li>
-                                            <li>
-                                                <a href="/casas/casonas-blancas" class="dropdown__link">Casonas Blancas</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-    
-                                    <div class="dropdown__group">
-                                        <div class="dropdown__icon">
-                                            <i class="flaticon-house"></i>
-                                        </div>
-    
-                                        <span class="dropdown__title">Casas destacadas</span>
-    
-                                        <ul class="dropdown__list">
-                                            <li>
-                                                <a href="/casas/las-lomas" class="dropdown__link">Las Lomas (Cerro Colorado)</a>
-                                            </li>
-                                            <li>
-                                                <a href="/casas/el-olivar" class="dropdown__link">Praderas El Olivar</a>
-                                            </li>
-                                            <li>
-                                                <a href="/casas/casonas-blancas" class="dropdown__link">Casonas Blancas (Cayma)</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="dropdown__group">
-                                        <div class="dropdown__icon">
-                                            <i class="ri-search-eye-line"></i>
-                                        </div>
-    
-                                        <span class="dropdown__title">¿Te gustaría saber más?</span>
-                                        <p style="margin:0;padding:0">Conoce todas nuestras casas disponibles en Arequipa.</p>
-                                        <a href="/casas" class="button primary center" style="margin:0;">Ver todas las casas</a>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </li>
-
-                        <!--=============== DROPDOWN 2 ===============-->
+                        <!--=============== DROPDOWN DEPARTAMENTOS (1ra OPCIÓN) ===============-->
                         <li class="dropdown__item">
                             <div class="nav__link dropdown__button">
                                 Departamentos <i class="ri-arrow-down-s-line dropdown__arrow"></i>
@@ -444,37 +327,40 @@
                                             <i class="flaticon-hook"></i>
                                         </div>
     
-                                        <span class="dropdown__title">Departamentos en preventa</span>
+                                        <span class="dropdown__title">Departamentos en construcción</span>
     
                                         <ul class="dropdown__list">
                                             <li>
-                                                <a href="/departamentos/proyecto-1" class="dropdown__link">Condominio Los Sauces</a>
+                                                <a href="/departamentos/proyecto-altamira" class="dropdown__link">Altamira Residencial</a>
                                             </li>
                                             <li>
-                                                <a href="/departamentos/proyecto-2" class="dropdown__link">Residencial Mirador</a>
+                                                <a href="/departamentos/proyecto-mirador" class="dropdown__link">Mirador del Misti</a>
                                             </li>
                                             <li>
-                                                <a href="/departamentos/proyecto-3" class="dropdown__link">Edificio Las Palmas</a>
+                                                <a href="/departamentos/proyecto-parque-real" class="dropdown__link">Parque Real</a>
+                                            </li>
+                                            <li>
+                                                <a href="/departamentos?tab=en-construccion" class="dropdown__link" style="color:var(--main2-color);font-weight:600;">Ver todos &rarr;</a>
                                             </li>
                                         </ul>
                                     </div>
 
                                     <div class="dropdown__group">
                                         <div class="dropdown__icon">
-                                            <i class="flaticon-building"></i>
+                                            <i class="ri-draft-line"></i>
                                         </div>
     
-                                        <span class="dropdown__title">Proyectos terminados</span>
+                                        <span class="dropdown__title">Departamentos en preventa</span>
     
                                         <ul class="dropdown__list">
                                             <li>
-                                                <a href="/departamentos/terrazas-de-vallecito" class="dropdown__link">Terrazas de Vallecito</a>
+                                                <a href="/departamentos/edificio-alba" class="dropdown__link">Edificio Alba</a>
                                             </li>
                                             <li>
-                                                <a href="/departamentos/mirador-santa-catalina" class="dropdown__link">Mirador de Santa Catalina</a>
+                                                <a href="/departamentos/edificio-zentra" class="dropdown__link">Edificio Zentra</a>
                                             </li>
                                             <li>
-                                                <a href="/departamentos/residencial-los-arces" class="dropdown__link">Residencial Los Arces</a>
+                                                <a href="/departamentos?tab=preventa" class="dropdown__link" style="color:var(--main2-color);font-weight:600;">Ver todos &rarr;</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -495,70 +381,24 @@
                             </div>
                         </li>
 
-                        <!--=============== DROPDOWN AIRBNB ===============-->
-                        <li class="dropdown__item">
-                            <div class="nav__link dropdown__button">
-                                Airbnb <i class="ri-arrow-down-s-line dropdown__arrow"></i>
+                        <!--=============== TERRENOS (DESHABILITADO) ===============-->
+                        <li class="nav__item--disabled">                      
+                            <div class="nav__link dropdown__button" aria-disabled="true">
+                                Terrenos <i class="ri-arrow-down-s-line dropdown__arrow"></i>
                             </div>
+                        </li>
 
-                            <div class="dropdown__container">
-                                <div class="dropdown__content l-container">
-                                    <div class="dropdown__group">
-                                        <div class="dropdown__icon">
-                                            <i class="ri-home-heart-line"></i>
-                                        </div>
+                        <!--=============== CASAS (DESHABILITADO) ===============-->
+                        <li class="nav__item--disabled">                      
+                            <div class="nav__link dropdown__button" aria-disabled="true">
+                                Casas <i class="ri-arrow-down-s-line dropdown__arrow"></i>
+                            </div>
+                        </li>
 
-                                        <span class="dropdown__title">Alojamiento temporal</span>
-
-                                        <ul class="dropdown__list">
-                                            <li>
-                                                <a href="/airbnb?distrito=yanahuara" class="dropdown__link">Yanahuara</a>
-                                            </li>
-                                            <li>
-                                                <a href="/airbnb?distrito=miraflores" class="dropdown__link">Miraflores</a>
-                                            </li>
-                                            <li>
-                                                <a href="/airbnb?distrito=cayma" class="dropdown__link">Cayma</a>
-                                            </li>
-                                            <li>
-                                                <a href="/airbnb?distrito=cercado" class="dropdown__link">Cercado de Arequipa</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="dropdown__group">
-                                        <div class="dropdown__icon">
-                                            <i class="ri-building-line"></i>
-                                        </div>
-
-                                        <span class="dropdown__title">Tipos de estadía</span>
-
-                                        <ul class="dropdown__list">
-                                            <li>
-                                                <a href="/airbnb?tipo=departamento" class="dropdown__link">Departamentos completos</a>
-                                            </li>
-                                            <li>
-                                                <a href="/airbnb?tipo=casa" class="dropdown__link">Casas de campo y ciudad</a>
-                                            </li>
-                                            <li>
-                                                <a href="/airbnb?tipo=suite" class="dropdown__link">Suites boutique</a>
-                                            </li>
-                                            <li>
-                                                <a href="/airbnb?tipo=habitacion" class="dropdown__link">Habitaciones privadas</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="dropdown__group">
-                                        <div class="dropdown__icon">
-                                            <i class="ri-star-smile-line"></i>
-                                        </div>
-
-                                        <span class="dropdown__title">Estadías en Arequipa</span>
-                                        <p style="margin:0;padding:0">Espacios amoblados, flexibles y verificados en la Ciudad Blanca.</p>
-                                        <a href="/airbnb" class="button primary center" style="margin:0;">Ver todos los alojamientos</a>
-                                    </div>
-                                </div>
+                        <!--=============== AIRBNB (DESHABILITADO) ===============-->
+                        <li class="nav__item--disabled">
+                            <div class="nav__link dropdown__button" aria-disabled="true">
+                                Airbnb <i class="ri-arrow-down-s-line dropdown__arrow"></i>
                             </div>
                         </li>
 
@@ -606,10 +446,10 @@
     
                                         <ul class="dropdown__list">
                                             <li>
-                                                <a href="/novedades/habilitacion-urbana-titulo-propiedad" class="dropdown__link">Habilitación urbana y SUNARP</a>
+                                                <a href="/novedades/analisis-inversion-departamentos-bustamante-y-rivero-arequipa" class="dropdown__link">Análisis e inversión inmobiliaria</a>
                                             </li>
                                             <li>
-                                                <a href="/departamentos?tab=entregados" class="dropdown__link">Proyectos terminados</a>
+                                                <a href="/departamentos?tab=estreno" class="dropdown__link">Departamentos en estreno</a>
                                             </li>
                                         </ul>
                                     </div>

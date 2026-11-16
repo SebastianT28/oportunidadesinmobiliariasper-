@@ -12,10 +12,11 @@ if (!$prop || $prop['categoria'] !== 'departamentos') {
 
 $related = relatedProperties('departamentos', $slug);
 
-$page        = $prop['nombre'] . ' — Departamento en ' . $prop['ubicacion'];
-$description = $prop['descripcion'];
-$canonical   = 'https://oportunidadesinmobiliariasperu.com/departamentos/' . $prop['slug'];
-$og_image    = 'https://oportunidadesinmobiliariasperu.com/' . $prop['imagen_og'];
+$page              = $prop['nombre'] . ' — Departamento en ' . $prop['ubicacion'];
+$description       = $prop['descripcion'];
+$canonical         = 'https://oportunidadesinmobiliariasperu.com/departamentos/' . $prop['slug'];
+$og_image          = 'https://oportunidadesinmobiliariasperu.com/' . $prop['imagen_og'];
+$preload_lcp_image = '/' . ltrim($prop['imagenes'][0], '/');
 $base = '../';
 include_once '../header.php';
 ?>
@@ -96,7 +97,8 @@ $has_tour = !empty($prop['tour_virtual']['activo']) && !empty($prop['tour_virtua
         <img src="/<?= $prop['imagenes'][0] ?>" 
              alt="<?= htmlspecialchars($prop['nombre']) ?>" 
              id="galleryMain" 
-             loading="eager"
+             width="1200" height="675"
+             loading="eager" fetchpriority="high" decoding="sync"
              onclick="openLightbox(galleryState.currentPhoto)"
              style="<?= ($has_360 || $has_tour) ? 'display: none;' : '' ?>">
 
@@ -127,7 +129,7 @@ $has_tour = !empty($prop['tour_virtual']['activo']) && !empty($prop['tour_virtua
         <div class="gallery-thumb gallery-thumb--360 active" 
              data-type="360"
              onclick="galleryGoTo(0)">
-            <img src="/<?= $prop['imagenes'][0] ?>" alt="Vista 360°" loading="lazy">
+            <img src="/<?= $prop['imagenes'][0] ?>" alt="Vista 360°" width="120" height="80" loading="lazy" decoding="async">
             <span class="thumb-360-badge">
                 <i class="ri-compass-3-line"></i>
                 <span>360°</span>
@@ -139,7 +141,7 @@ $has_tour = !empty($prop['tour_virtual']['activo']) && !empty($prop['tour_virtua
         <div class="gallery-thumb gallery-thumb--tour <?= (!$has_360 ? 'active' : '') ?>" 
              data-type="tour"
              onclick="galleryGoTo(<?= $has_360 ? 1 : 0 ?>)">
-            <img src="/<?= $prop['imagenes'][0] ?>" alt="Tour 360" loading="lazy">
+            <img src="/<?= $prop['imagenes'][0] ?>" alt="Tour 360" width="120" height="80" loading="lazy" decoding="async">
             <span class="thumb-360-badge thumb-tour-badge">
                 <i class="ri-walk-line"></i>
                 <span>Tour 360</span>
@@ -154,7 +156,7 @@ $has_tour = !empty($prop['tour_virtual']['activo']) && !empty($prop['tour_virtua
         <div class="gallery-thumb <?= ($thumbOffset === 0 && $i === 0) ? 'active' : '' ?>" 
              data-src="/<?= htmlspecialchars($img) ?>"
              onclick="galleryGoTo(<?= $i + $thumbOffset ?>)">
-            <img src="/<?= $img ?>" alt="Foto <?= $i+1 ?> de <?= htmlspecialchars($prop['nombre']) ?>" loading="lazy">
+            <img src="/<?= $img ?>" alt="Foto <?= $i+1 ?> de <?= htmlspecialchars($prop['nombre']) ?>" width="120" height="80" loading="lazy" decoding="async">
         </div>
         <?php endforeach; ?>
     </div>
@@ -165,7 +167,7 @@ $has_tour = !empty($prop['tour_virtual']['activo']) && !empty($prop['tour_virtua
     <button class="lightbox-close" id="lightboxClose" aria-label="Cerrar"><i class="ri-close-line"></i></button>
     <button class="lightbox-arrow lightbox-arrow--prev" id="lbPrev" aria-label="Anterior"><i class="ri-arrow-left-s-line"></i></button>
     <div class="lightbox-img-wrap">
-        <img src="" alt="" class="lightbox-img" id="lightboxImg">
+        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" class="lightbox-img" id="lightboxImg">
     </div>
     <button class="lightbox-arrow lightbox-arrow--next" id="lbNext" aria-label="Siguiente"><i class="ri-arrow-right-s-line"></i></button>
     <div class="lightbox-footer">
@@ -173,7 +175,7 @@ $has_tour = !empty($prop['tour_virtual']['activo']) && !empty($prop['tour_virtua
         <div class="lightbox-thumbs" id="lightboxThumbs">
             <?php foreach ($prop['imagenes'] as $i => $img): ?>
             <div class="lightbox-thumb <?= $i === 0 ? 'active' : '' ?>" onclick="lbGoTo(<?= $i ?>)">
-                <img src="/<?= $img ?>" alt="Foto <?= $i+1 ?>" loading="lazy">
+                <img src="/<?= $img ?>" alt="Foto <?= $i+1 ?>" width="80" height="60" loading="lazy" decoding="async">
             </div>
             <?php endforeach; ?>
         </div>
@@ -186,17 +188,19 @@ $has_tour = !empty($prop['tour_virtual']['activo']) && !empty($prop['tour_virtua
         <p class="detail-ubicacion"><i class="flaticon-location-pin"></i> <?= htmlspecialchars($prop['ubicacion']) ?></p>
     </div>
     <div class="detail-header__right">
+        <?php if ($prop['estado'] !== 'entregado'): ?>
         <span class="badge-estado badge--<?= $prop['estado'] ?>">
             <?php
             echo match($prop['estado']) {
                 'en-construccion' => '🔧 En construcción',
-                'entregado'       => '✅ Terminado',
+                'preventa'        => '📐 En preventa (Planos)',
                 default           => 'En venta',
             };
             ?>
         </span>
+        <?php endif; ?>
         <?php if (!empty($prop['entrega'])): ?>
-        <p class="entrega-label"><i class="ri-calendar-check-line"></i> Entrega: <strong><?= htmlspecialchars($prop['entrega']) ?></strong></p>
+        <p class="entrega-label"><i class="ri-calendar-check-line"></i> Entrega estimada: <strong><?= htmlspecialchars($prop['entrega']) ?></strong></p>
         <?php endif; ?>
     </div>
 </div>
@@ -206,22 +210,22 @@ $has_tour = !empty($prop['tour_virtual']['activo']) && !empty($prop['tour_virtua
         <div class="detail-stats">
             <div class="stat-box">
                 <i class="ri-hotel-bed-line"></i>
-                <strong><?= $prop['dormitorios'] ?></strong>
+                <strong><?= htmlspecialchars((string)($prop['dormitorios_rango'] ?? $prop['dormitorios'])) ?></strong>
                 <span>Dormitorios</span>
             </div>
             <div class="stat-box">
                 <i class="flaticon-bathtub"></i>
-                <strong><?= $prop['banos'] ?></strong>
+                <strong><?= htmlspecialchars((string)($prop['banos_rango'] ?? $prop['banos'])) ?></strong>
                 <span>Baños</span>
             </div>
             <div class="stat-box">
                 <i class="ri-layout-2-line"></i>
-                <strong><?= $prop['area_min'] ?>–<?= $prop['area_max'] ?> m²</strong>
+                <strong><?= $prop['area_min'] ?><?= (!empty($prop['area_max']) && $prop['area_max'] != $prop['area_min']) ? '–' . $prop['area_max'] : '' ?> m²</strong>
                 <span>Área</span>
             </div>
             <div class="stat-box">
                 <i class="flaticon-save-money"></i>
-                <strong>S/ <?= number_format($prop['precio'], 0, '.', ',') ?></strong>
+                <strong><?= htmlspecialchars($prop['moneda'] ?? 'S/') ?> <?= number_format($prop['precio'], 0, '.', ',') ?></strong>
                 <span>Precio desde</span>
             </div>
         </div>
@@ -230,6 +234,24 @@ $has_tour = !empty($prop['tour_virtual']['activo']) && !empty($prop['tour_virtua
             <h2>Descripción del proyecto</h2>
             <p><?= nl2br(htmlspecialchars($prop['descripcion_larga'])) ?></p>
         </div>
+
+        <?php if (!empty($prop['tipologias'])): ?>
+        <div class="detail-section">
+            <h2>Tipologías y precios referenciales</h2>
+            <?php if (!empty($prop['precio_m2_ref'])): ?>
+            <p class="detail-tipologias-note">Valor referencial aproximado: <strong><?= htmlspecialchars($prop['precio_m2_ref']) ?></strong></p>
+            <?php endif; ?>
+            <div class="detail-tipologias-grid">
+                <?php foreach ($prop['tipologias'] as $tip): ?>
+                <div class="detail-tipologia-card">
+                    <span class="detail-tipologia-card__dorms"><?= htmlspecialchars($tip['dorms']) ?></span>
+                    <strong class="detail-tipologia-card__area"><?= htmlspecialchars($tip['area']) ?></strong>
+                    <span class="detail-tipologia-card__price"><?= htmlspecialchars($tip['precio']) ?></span>
+                </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <?php endif; ?>
 
         <div class="detail-section">
             <h2>Amenidades y características</h2>
@@ -243,10 +265,62 @@ $has_tour = !empty($prop['tour_virtual']['activo']) && !empty($prop['tour_virtua
             </div>
         </div>
 
+        <?php if (!empty($prop['modalidad_pago']) || !empty($prop['parametros_urbanos'])): ?>
         <div class="detail-section">
-            <h2>Ubicación</h2>
+            <h2>Modalidad de pago y parámetros del proyecto</h2>
+            <div class="detail-info-cards">
+                <?php if (!empty($prop['modalidad_pago'])): ?>
+                <div class="detail-info-card">
+                    <h3><i class="ri-bank-card-line"></i> Esquema de desembolsos</h3>
+                    <ul>
+                        <?php foreach ($prop['modalidad_pago'] as $itemPago): ?>
+                        <li><?= htmlspecialchars($itemPago) ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+                <?php endif; ?>
+                <?php if (!empty($prop['parametros_urbanos'])): ?>
+                <div class="detail-info-card">
+                    <h3><i class="ri-building-2-line"></i> Parámetros de construcción</h3>
+                    <p><?= htmlspecialchars($prop['parametros_urbanos']) ?></p>
+                </div>
+                <?php endif; ?>
+            </div>
+        </div>
+        <?php endif; ?>
+
+        <?php if (!empty($prop['lugares_cercanos'])): ?>
+        <div class="detail-section">
+            <h2>Puntos de interés cercanos</h2>
+            <div class="detail-nearby-grid">
+                <?php foreach ($prop['lugares_cercanos'] as $lugar): ?>
+                <div class="detail-nearby-item">
+                    <i class="ri-map-pin-time-line"></i>
+                    <div>
+                        <strong><?= htmlspecialchars($lugar['nombre']) ?></strong>
+                        <span><?= htmlspecialchars($lugar['tiempo']) ?></span>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <?php endif; ?>
+
+        <div class="detail-section">
+            <div class="detail-map-head">
+                <h2>Ubicación</h2>
+                <?php if (!empty($prop['maps_url'])): ?>
+                <a href="<?= htmlspecialchars($prop['maps_url']) ?>" target="_blank" rel="noopener" class="detail-map-ext">
+                    Abrir en Google Maps <i class="ri-external-link-line"></i>
+                </a>
+                <?php endif; ?>
+            </div>
+            <p class="detail-map-address">
+                <i class="ri-map-pin-2-fill"></i>
+                <span><?= htmlspecialchars($prop['direccion_exacta'] ?? $prop['ubicacion']) ?></span>
+            </p>
             <div class="map-embed">
-                <iframe src="https://maps.google.com/maps?q=<?= $prop['lat'] ?>,<?= $prop['lng'] ?>&z=15&output=embed"
+                <iframe src="https://maps.google.com/maps?q=<?= $prop['lat'] ?>,<?= $prop['lng'] ?>&z=16&output=embed"
                         width="100%" height="320" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
         </div>
@@ -265,9 +339,17 @@ $has_tour = !empty($prop['tour_virtual']['activo']) && !empty($prop['tour_virtua
             <?php if (!empty($prop['cuota'])): ?>
             <div class="cuota-highlight">
                 <p>Cuota desde</p>
-                <strong>S/ <?= number_format($prop['cuota'], 0) ?>/mes</strong>
+                <strong><?= htmlspecialchars($prop['moneda'] ?? 'S/') ?> <?= number_format($prop['cuota'], 0) ?>/mes</strong>
                 <?php if (!empty($prop['separacion'])): ?>
-                <small>Separación: S/ <?= number_format($prop['separacion'], 0) ?></small>
+                <small>Separación: <?= htmlspecialchars($prop['moneda'] ?? 'S/') ?> <?= number_format($prop['separacion'], 0) ?></small>
+                <?php endif; ?>
+            </div>
+            <?php elseif (!empty($prop['reserva_destacada'])): ?>
+            <div class="cuota-highlight">
+                <p><?= htmlspecialchars($prop['reserva_destacada']['etiqueta'] ?? 'Separa en preventa con') ?></p>
+                <strong><?= htmlspecialchars($prop['reserva_destacada']['monto']) ?></strong>
+                <?php if (!empty($prop['reserva_destacada']['detalle'])): ?>
+                <small><?= htmlspecialchars($prop['reserva_destacada']['detalle']) ?></small>
                 <?php endif; ?>
             </div>
             <?php endif; ?>
